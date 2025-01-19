@@ -1,8 +1,9 @@
 # ONITO web application backend
 
 ## Dependencies
-Node 22.13.0
-Other dependencies listed in `package.json`.
+Dependencies listed in `package.json`.
+
+Ran on NodeJS v22.13.0
 
 ## Running the project
 ### Install dependencies
