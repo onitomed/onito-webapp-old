@@ -1,8 +1,19 @@
 # ONITO web application backend
 
 ## Dependencies
-Node 17.0.19
+Node 22.13.0
 Other dependencies listed in `package.json`.
 
 ## Running the project
-Standard Node run should run the backend. `npm run dev` and `npm run prod` should work for development and production runs respectively.
+### Install dependencies
+In directory with `package.json`, run
+`npm i`
+
+### Configure database and JWT secret
+Fill in MongoDB database URI and JWT secret fields in `backend/config/config.env`. By default, they are filled with placeholder values.
+
+### Development run (with nodemon)
+`npm run server`
+
+### Production run
+`npm run start`
