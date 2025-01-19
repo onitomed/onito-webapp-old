@@ -16,7 +16,11 @@ npm i
 Fill in MongoDB database URI and JWT secret fields in `backend/config/config.env`. By default, they are filled with placeholder values.
 
 ### Development run (with nodemon)
-```npm run server```
+```bash
+npm run server
+```
 
 ### Production run
-```npm run start```
+```bash
+npm run start
+```
