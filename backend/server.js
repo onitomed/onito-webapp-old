@@ -1,13 +1,15 @@
 const express = require('express')
 const path = require('path')
+const swaggerUi = require('swagger-ui-express')
+
 const dotenv = require('dotenv').config({ path: path.join(__dirname, 'config', 'config.env') })
 const {errorHandler} = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
+const swaggerDocument = require('./docs/apidocs.json');
 const cors = require('cors')
 
 
 const port = process.env.PORT || 5000
-
 
 connectDB()
 
@@ -21,6 +23,9 @@ app.use(cors())
 
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/patientdata', require('./routes/patientDataRoutes'))
+app.use('/docs', swaggerUi.serve);
+app.get('/docs', swaggerUi.setup(swaggerDocument));
+
 
 app.use(errorHandler)
 

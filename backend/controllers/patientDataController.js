@@ -1,7 +1,5 @@
 const asyncHandler = require('express-async-handler')
 
-
-
 const PatientData = require('../models/patientDataModel')
 
 //  @desc    Get patient data
