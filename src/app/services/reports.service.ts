@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { User } from '../models/User';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,6 @@ export class ReportsService {
     })
 
   
-    return this.httpClient.get('http://localhost:8000/api/patientdata/', { responseType: 'text'});
+    return this.httpClient.get(`${environment.apiUrl}/api/patientdata/`, { responseType: 'text'});
   }
 }
