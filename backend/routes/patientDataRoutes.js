@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const { getPatientData, createPatientData, updatePatientData, deletePatientData } = require('../controllers/patientDataController')
+const { getPatientData, addPatientData, updatePatientData, deletePatientData } = require('../controllers/patientDataController')
+const { getShareLink, getSharedPatientData } = require('../controllers/sharedPatientDataController') 
 
 const { protect } = require('../middleware/authMiddleware')
+const { route } = require('./userRoutes')
 
-router.route('/').get(protect, getPatientData).post(protect, createPatientData)
-router.route('/:id').put(protect, updatePatientData).delete(protect, deletePatientData)
+router.route('/').get(protect, getPatientData).post(protect, addPatientData).put(protect, updatePatientData).delete(protect, deletePatientData)
+router.route('/share').get(protect, getShareLink)
+router.route('/share/:token').get(getSharedPatientData)
 
 module.exports = router

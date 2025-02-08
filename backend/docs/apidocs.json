@@ -95,7 +95,7 @@
                                  },
                                  "token": {
                                     "type": "string",
-                                    "example": "442893aba778ab321dc151d9b1ad98c64ed56c07f8cbaed",
+                                    "example": "442893aba778a.b321dc151d9b1ad98c.64ed56c07f8cbaed",
                                     "description": "JSON Web Token"
                                  }
                               }
