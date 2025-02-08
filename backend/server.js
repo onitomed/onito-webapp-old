@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const swaggerUi = require('swagger-ui-express')
 
-const dotenv = require('dotenv').config({ path: path.join(__dirname, 'config', 'config.env') })
+const dotenv = require('dotenv').config({ path: path.join(__dirname, '..') })
 const {errorHandler} = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 const swaggerDocument = require('./docs/apidocs.json');
