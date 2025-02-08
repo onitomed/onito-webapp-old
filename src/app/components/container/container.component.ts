@@ -27,10 +27,11 @@ export class ContainerComponent implements OnInit {
     })
 
     this.reportsService.findById()
-    .subscribe((blob: Blob): void => {
-      const file = new Blob([blob], {type: 'application/pdf'});
+    .subscribe((b64String: string): void => {
+      const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
+      const file = new Blob([byteArray], {type: 'application/pdf'});
       const fileURL = URL.createObjectURL(file);
-      window.open(fileURL, '_blank', 'width=1000, height=800');
+      window.open(fileURL, 'width=1000, height=800');
     });
 
   }

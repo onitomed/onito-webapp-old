@@ -1,7 +1,7 @@
 <header>
     <h1>ONITO</h1>
-    <app-header-item class="selected" text="profile" route="home"></app-header-item>
-    <app-header-item class="selected" text="predict" route="predict"></app-header-item>
-    <app-header-item class="selected" text="add reports" route="add-reports"></app-header-item>
-    <app-header-item class="selected" text="models" route="models"></app-header-item>
+    <app-header-item *ngIf="this.isLoggedIn" class="selected" text="reports" route="add-reports"></app-header-item>
+    <app-header-item *ngIf="this.isLoggedIn" class="selected" text="profile" route="home"></app-header-item>
+    <!--<app-header-item class="selected" text="predict" route="predict"></app-header-item>-->
+    <app-header-item class="selected" text="about" route="models"></app-header-item>
 </header>

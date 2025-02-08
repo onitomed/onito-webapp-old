@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:5000/api/users/'
+  private apiUrl = 'http://localhost:8000/api/users/'
 
   constructor(private httpClient: HttpClient, private tokenStorageService: TokenStorageService, private router: Router) { }
 
@@ -20,10 +20,7 @@ export class UserService {
   }
 
   logout() {
-    this.tokenStorageService.signOut();
-    
-    
-    
+    this.tokenStorageService.signOut(); 
   }
   
 }

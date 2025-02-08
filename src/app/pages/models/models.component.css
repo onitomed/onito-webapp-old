@@ -7,7 +7,11 @@
     color: var(--primary-color);
     margin: 10px 0;
 }
-
+a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    
+}
 .model-info {
     color: black;
     font-size: 1.2rem;

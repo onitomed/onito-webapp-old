@@ -13,12 +13,12 @@ export class ReportsService {
 
   constructor(private httpClient: HttpClient, private userService: UserService) { }
 
-  public findById(): Observable<Blob> {
+  public findById(): Observable<string> {
     this.userService.getUser().subscribe((user) => {
       this.user = user
     })
 
   
-    return this.httpClient.get('http://localhost:3416/api/data/'+this.user._id, { responseType: 'blob'});
+    return this.httpClient.get('http://localhost:8000/api/patientdata/', { responseType: 'text'});
   }
 }
