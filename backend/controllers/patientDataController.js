@@ -110,6 +110,12 @@ const addPatientData = asyncHandler(async (req, res) => {
             link: dlink,
         })
         res.status(200).json(patientData)
+        const directory = path.resolve(__dirname,'../temp')
+        for (const file of fs.readdirSync(directory)) {
+            if (file.includes(req.user.id))
+                fs.unlinkSync(path.resolve(directory,file))
+        }
+        
     }
     else {
         try {
@@ -165,6 +171,13 @@ const addPatientData = asyncHandler(async (req, res) => {
         
         const patientData = await PatientData.findOneAndUpdate({user: req.user.id}, {updatedAt: Date.now}, {new: true})
         res.status(200).json(patientData)
+        const directory = path.resolve(__dirname,'../temp')
+        for (const file of fs.readdirSync(directory)) {
+            if (file.includes(req.user.id))
+                fs.unlinkSync(path.resolve(directory,file))
+          }
+        
+        
     }
         
 })

@@ -6,7 +6,7 @@ const { getShareLink, getSharedPatientData } = require('../controllers/sharedPat
 const { protect } = require('../middleware/authMiddleware')
 const { route } = require('./userRoutes')
 
-router.route('/').get(protect, getPatientData).post(protect, addPatientData).put(protect, updatePatientData).delete(protect, deletePatientData)
+router.route('/').get(protect, getPatientData).post(protect, addPatientData).delete(protect, deletePatientData)
 router.route('/share').get(protect, getShareLink)
 router.route('/share/:token').get(getSharedPatientData)
 
