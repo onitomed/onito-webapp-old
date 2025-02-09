@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 
@@ -23,6 +22,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import { RegisterComponent } from './pages/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { LoginComponent } from './components/login/login.component';
+import { ReportsComponent } from './pages/reports/reports.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 const appRoutes: Routes = [
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
   {path: 'add-reports', component: AddReportsComponent},
   {path: 'models', component: ModelsComponent},
   {path: 'register', component: RegisterComponent},
-  {path: '', component: LoginComponent}
+  {path: '', component: LoginComponent},
+  {path: 'reports', component: ReportsComponent}
 ]
 
 @NgModule({
@@ -49,10 +51,11 @@ const appRoutes: Routes = [
     RegisterComponent,
     UserProfileComponent,
     LoginComponent,
+    ReportsComponent,
 
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), NgxExtendedPdfViewerModule, HttpClientModule, FormsModule  
+    BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), HttpClientModule, FormsModule, PdfViewerModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
