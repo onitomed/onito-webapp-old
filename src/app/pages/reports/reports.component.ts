@@ -24,7 +24,7 @@ export class ReportsComponent implements OnInit {
 
   constructor(private reportsService: ReportsService) {
     if (environment.production == true)
-      this.host = `${window.location.hostname}`
+      this.host = `${window.location.origin}`
     else
       this.host = `${window.location.origin}`
 
