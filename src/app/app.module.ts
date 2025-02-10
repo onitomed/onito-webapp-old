@@ -35,9 +35,9 @@ const appRoutes: Routes = [
   {path: 'add-reports', component: AddReportsComponent},
   {path: 'models', component: ModelsComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'view/:token', component: ViewComponent},
   {path: '', component: LoginComponent},
-  {path: 'reports', component: ReportsComponent}
+  {path: 'reports', component: ReportsComponent},
+  {path: 'view', component: ViewComponent},
 ]
 
 @NgModule({

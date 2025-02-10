@@ -8,10 +8,11 @@
     {{copyMessage}}
   </div>
     
-    <div>
+    <div *ngIf="!noReports">
         <pdf-viewer [src]="pdfSrc"
               [render-text]="true"
               [original-size]="true"
               [fit-to-page]="true"
   ></pdf-viewer></div>
+  <div class="flex" *ngIf="noReports">No medical reports found</div>
 </div>

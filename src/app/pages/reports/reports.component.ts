@@ -23,14 +23,11 @@ export class ReportsComponent implements OnInit {
   
 
   constructor(private reportsService: ReportsService) {
-    if (environment.production == true)
-      this.host = `${window.location.origin}`
-    else
-      this.host = `${window.location.origin}`
+    this.host = `${window.location.origin}`
 
     this.reportsService.getShareLink()
     .subscribe((linkObj: linkObject): void => {
-      this.link = `${this.host}/view/${linkObj['link']}`
+      this.link = `${this.host}/view?token=${linkObj['link']}`
       
     })
     this.reportsService.findById()

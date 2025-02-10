@@ -16,9 +16,13 @@ export class ViewComponent implements OnInit {
   link: string=""
   copyMessageDisplay = false
   copyMessage = "Copied link to reports"
+  noReports = false
 
   constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router) {
-    let token = this.route.snapshot.paramMap.get('token')
+    let token = null
+    this.route.queryParams.subscribe(params => {
+      token = params['token']
+    })
     if (token != null) {
       this.reportsService.findByToken(token)
         .subscribe((b64String: string): void => {
@@ -29,6 +33,8 @@ export class ViewComponent implements OnInit {
           this.link = `${window.location.href}`
       });
     }
+    else
+      this.noReports = true
   }
   
 
