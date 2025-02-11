@@ -65,19 +65,19 @@ const addPatientData = asyncHandler(async (req, res) => {
     if (patientDataCollection.length == 0) {
         let fileBase64
         if (fileUploaded) {
-            const pdfBuffer1 = fs.readFileSync(path.resolve(__dirname,'../public/startpage.pdf')) 
-            const pdfBuffer2 = fs.readFileSync(path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`))
-            const pdfsToMerge = [pdfBuffer2, pdfBuffer1]
+            const pdf1 = path.resolve(__dirname,'../public/startpage.pdf') 
+            const pdf2 = path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`)
+            const pdfsToMerge = [pdf1, pdf2]
             const mergedPdf = await PDFDocument.create() 
-            for (const pdfBytes of pdfsToMerge) { 
-                const pdf = await PDFDocument.load(pdfBytes); 
-                const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+            for (const pdfPath of pdfsToMerge) { 
+                const uint8Array = fs.readFileSync(pdfPath)
+                const pdf = await PDFDocument.load(uint8Array); 
+                const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices())
                 copiedPages.forEach((page) => {
                     mergedPdf.addPage(page)
                 })
             }
             fileBase64 = await mergedPdf.saveAsBase64()
-            
         }
         else {
             fileBase64 = Buffer.from(fs.readFileSync(path.resolve(__dirname,'../public/startpage.pdf'))).toString('base64')
@@ -128,12 +128,13 @@ const addPatientData = asyncHandler(async (req, res) => {
             }
             fs.writeFileSync(path.resolve(__dirname,`../temp/${req.user.id}_old.pdf`),response.data.content,'base64')
             if (fileUploaded) {
-                const pdfBuffer1 = fs.readFileSync(path.resolve(__dirname,`../temp/${req.user.id}_old.pdf`)) 
-                const pdfBuffer2 = fs.readFileSync(path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`))
-                const pdfsToMerge = [pdfBuffer2, pdfBuffer1]
+                const pdf1 = path.resolve(__dirname,`../temp/${req.user.id}_old.pdf`) 
+                const pdf2 = path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`)
+                const pdfsToMerge = [pdf1, pdf2]
                 const mergedPdf = await PDFDocument.create() 
-                for (const pdfBytes of pdfsToMerge) { 
-                    const pdf = await PDFDocument.load(pdfBytes); 
+                for (const pdfPath of pdfsToMerge) { 
+                    const uint8Array = fs.readFileSync(pdfPath)
+                    const pdf = await PDFDocument.load(uint8Array);  
                     const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
                     copiedPages.forEach((page) => {
                         mergedPdf.addPage(page)
