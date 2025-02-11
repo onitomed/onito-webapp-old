@@ -27,7 +27,7 @@ export class ReportsComponent implements OnInit {
 
     this.reportsService.getShareLink()
     .subscribe((linkObj: linkObject): void => {
-      this.link = `${this.host}/view?token=${linkObj['link']}`
+      this.link = `${this.host}/#/view?token=${linkObj['link']}`
       
     })
     this.reportsService.findById()

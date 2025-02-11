@@ -27,6 +27,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ViewComponent } from './pages/view/view.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 const appRoutes: Routes = [
@@ -62,7 +63,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), HttpClientModule, FormsModule, PdfViewerModule, ClipboardModule, NoopAnimationsModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
