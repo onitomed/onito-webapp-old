@@ -15,24 +15,33 @@ export class ViewComponent implements OnInit {
   copyMessageDisplay = false
   copyMessage = "Copied link to reports"
   noReports = false
+  isLoading = false
 
   constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router) {
+    this.isLoading = true
     let token = null
     this.route.queryParams.subscribe(params => {
       token = params['token']
     })
     if (token != null) {
       this.reportsService.findByToken(token)
-        .subscribe((b64String: string): void => {
+        .subscribe((b64String: string)  => {
           const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
           
           const file = new Blob([byteArray], {type: 'application/pdf'});
           this.pdfSrc = URL.createObjectURL(file);
           this.link = `${window.location.href}`
+          this.isLoading = false
+      }, (err) => {
+        this.isLoading = false
+        this.noReports = true
       });
     }
-    else
+    else {
+      this.isLoading = false
       this.noReports = true
+    }
+      
   }
   
 

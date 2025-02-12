@@ -8,7 +8,11 @@
   </div>
   <div class="flex" *ngIf="copyMessageDisplay">
     {{copyMessage}}
-  </div>
+  </div></div>
+  <div>
+    <div *ngIf="isLoading">
+      <app-spinner></app-spinner>
+    </div>
     
     <div *ngIf="!noReports">
         <pdf-viewer [src]="pdfSrc"
