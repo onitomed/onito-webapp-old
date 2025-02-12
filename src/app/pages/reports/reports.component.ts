@@ -20,11 +20,13 @@ export class ReportsComponent implements OnInit {
   copyMessageDisplay = false
   copyMessage = "Copied link to reports"
   host: string = ''
+  noReports = false
+  isLoading = false
   
 
   constructor(private reportsService: ReportsService) {
     this.host = `${window.location.origin}`
-
+    this.isLoading = true
     this.reportsService.getShareLink()
     .subscribe((linkObj: linkObject): void => {
       this.link = `${this.host}/#/view?token=${linkObj['link']}`
@@ -35,6 +37,7 @@ export class ReportsComponent implements OnInit {
       const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
       const file = new Blob([byteArray], {type: 'application/pdf'});
       this.pdfSrc = URL.createObjectURL(file);
+      this.isLoading = false
     });
     
    }

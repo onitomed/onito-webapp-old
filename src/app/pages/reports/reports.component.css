@@ -25,3 +25,9 @@ app-button {
     padding: 10px;
     
 }
+@media screen and (max-width: 768px) {
+    .col-md-12 {
+       margin-top: 200px;
+    }  
+    
+}

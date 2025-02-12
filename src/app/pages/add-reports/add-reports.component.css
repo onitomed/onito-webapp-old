@@ -10,3 +10,9 @@ h1 {
 h3 {
     margin-bottom: 30px;
 }
+@media screen and (max-width: 768px) {
+    .title {
+       margin-top: 160px;
+    }  
+    
+}

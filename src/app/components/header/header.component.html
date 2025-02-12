@@ -1,7 +1,31 @@
 <header>
-    <h1><a href='index.html'>ONITO</a></h1>
+    <div class="mobileOff">
+    <app-header-item text="ONITO" route="/"></app-header-item>
     <app-header-item *ngIf="this.isLoggedIn" class="selected" text="reports" route="reports"></app-header-item>
     <app-header-item *ngIf="this.isLoggedIn" class="selected" text="profile" route="home"></app-header-item>
     <!--<app-header-item class="selected" text="predict" route="predict"></app-header-item>-->
     <app-header-item class="selected" text="about" route="models"></app-header-item>
+    </div>
+    
+    <div class="mobileOn">
+        <app-header-item text="ONITO" route="/"></app-header-item>
+    <input type="checkbox"  class="openSidebarMenu" id="openSidebarMenu">
+  <label for="openSidebarMenu" class="sidebarIconToggle">
+      <div class="spinner diagonal part-1"></div>
+      <div class="spinner horizontal"></div>
+      <div class="spinner diagonal part-2"></div>
+  </label>
+  
+  
+  <div id="sidebarMenu">
+        
+        <div class="main-content-wrapper">
+            <app-header-item text="home" route="/"></app-header-item>
+            <app-header-item *ngIf="this.isLoggedIn" class="selected" text="reports" route="reports"></app-header-item>
+            <app-header-item *ngIf="this.isLoggedIn" class="selected" text="profile" route="home"></app-header-item>
+            <!--<app-header-item class="selected" text="predict" route="predict"></app-header-item>-->
+            <app-header-item class="selected" text="about" route="models"></app-header-item>
+        </div>
+    </div>
+    </div>
 </header>

@@ -12,3 +12,9 @@ h2 {
     
 }
 
+@media screen and (max-width: 768px) {
+    .col-md-12 {
+       margin-top: 90px;
+    }  
+    
+}

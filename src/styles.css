@@ -109,6 +109,8 @@ a {
     height: auto;
 }
 
+
+
 /* smaller desktops */
 @media (max-width: 1250px) {
     .navbar a {
@@ -117,6 +119,7 @@ a {
         margin: 0 15px;
     }
 }
+
 
 .container {
     max-width: 1400px;

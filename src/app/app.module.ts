@@ -28,6 +28,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ViewComponent } from './pages/view/view.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 const appRoutes: Routes = [
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     LoginComponent,
     ReportsComponent,
     ViewComponent,
+    SpinnerComponent,
 
   ],
   imports: [

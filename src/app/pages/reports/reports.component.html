@@ -1,4 +1,4 @@
-<div>
+<div class="col-md-12">
   <div class="flex">
       <div><a routerLink='/add-reports'><app-button text="Add reports" color="dark blue"></app-button></a></div>
       <div><app-button text="Share" color="dark blue" [cdkCopyToClipboard]="link" (cdkCopyToClipboardCopied)="_copied($event)" ></app-button></div>
@@ -7,12 +7,14 @@
 <div class="flex" *ngIf="copyMessageDisplay">
   {{copyMessage}}
 </div>
-  
-  <div>
-      <pdf-viewer [src]="pdfSrc"
-            [render-text]="true"
-            [original-size]="true"
-            [fit-to-page]="true"
+  <div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+<div *ngIf="!noReports">
+  <pdf-viewer [src]="pdfSrc"
+        [render-text]="true"
+        [original-size]="true"
+        [fit-to-page]="true"
 ></pdf-viewer></div>
 </div>
     

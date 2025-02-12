@@ -16,3 +16,10 @@ h2 {
     font-size: 1.6rem;
     background-color: var(--primary-color);
 }
+
+@media screen and (max-width: 768px) {
+     .col-md-12 {
+        margin-top: 160px;
+     }  
+     
+}
