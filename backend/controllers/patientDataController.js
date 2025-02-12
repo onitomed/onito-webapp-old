@@ -67,7 +67,7 @@ const addPatientData = asyncHandler(async (req, res) => {
         if (fileUploaded) {
             const pdf1 = path.resolve(__dirname,'../public/startpage.pdf') 
             const pdf2 = path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`)
-            const pdfsToMerge = [pdf1, pdf2]
+            const pdfsToMerge = [pdf2, pdf1]
             const mergedPdf = await PDFDocument.create() 
             for (const pdfPath of pdfsToMerge) { 
                 const uint8Array = fs.readFileSync(pdfPath)
@@ -130,7 +130,7 @@ const addPatientData = asyncHandler(async (req, res) => {
             if (fileUploaded) {
                 const pdf1 = path.resolve(__dirname,`../temp/${req.user.id}_old.pdf`) 
                 const pdf2 = path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`)
-                const pdfsToMerge = [pdf1, pdf2]
+                const pdfsToMerge = [pdf2, pdf1]
                 const mergedPdf = await PDFDocument.create() 
                 for (const pdfPath of pdfsToMerge) { 
                     const uint8Array = fs.readFileSync(pdfPath)
