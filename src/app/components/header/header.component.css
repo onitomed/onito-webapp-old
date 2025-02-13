@@ -126,6 +126,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 .sidebarIconToggle{
     display:block
  }
+
  .mobileOn {
     display:flex;
     
@@ -133,6 +134,4 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
  .mobileOff {
     display: none;
  }
- 
-  
 }
