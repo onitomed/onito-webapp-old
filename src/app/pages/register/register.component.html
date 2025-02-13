@@ -69,11 +69,10 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Sign Up</button>
-          <button type ="submit" routerLink="/" class="btn btn-primary btn-block">
-            Login
-          </button>
+        <div class="form-group flex">
+          <app-button text="Sign Up" type="submit" color="dark blue"></app-button>
+          <app-button text="Login" color="dark blue" routerLink="/">
+          </app-button>
         </div>
         <div *ngIf="isLoading">
           <app-spinner></app-spinner>

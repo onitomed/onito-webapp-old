@@ -6,20 +6,24 @@ h2 {
     margin: 0 30px;
 }
 
-.btn {
-    padding: 5px 10px;
-    margin-left: 15px;
-
-}
 
 .alert-success {
     font-size: 1.6rem;
     background-color: var(--primary-color);
+}
+.flex {
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-start;
 }
 
 @media screen and (max-width: 768px) {
      .col-md-12 {
         margin-top: 160px;
      }  
+     .flex {
+        flex-direction: column;
+        
+    }
      
 }

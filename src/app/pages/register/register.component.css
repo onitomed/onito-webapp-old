@@ -11,10 +11,18 @@ h2 {
     margin-left: 15px;
     
 }
+.flex {
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-start;
+}
 
 @media screen and (max-width: 768px) {
     .col-md-12 {
        margin-top: 90px;
     }  
+    .flex {
+        flex-direction: column;
+    }
     
 }

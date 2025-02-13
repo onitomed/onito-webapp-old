@@ -10,7 +10,7 @@ header {
     color: #7ED958;
 }
 .mobileOn {
-    display:none
+    display: none;
  }
  .mobileOff {
     display: block;
