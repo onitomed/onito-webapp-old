@@ -21,14 +21,14 @@ const getSharedPatientData = asyncHandler(async (req, res) => {
         const base64Pdf = await getPdfFromDatastore(userId)
         res.contentType("application/pdf")
         res.setHeader( "Content-Disposition", "inline")
-        res.status(200).send(base64Pdf)
+        res.status(200).send({base64Pdf: base64Pdf})
     } catch (err) {
         res.status(500)
         throw new Error(err.toString())
     }
 })
 
-const generateToken = (id, duration='24h') => {
+const generateToken = (id, duration='10d') => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: duration,
     })
