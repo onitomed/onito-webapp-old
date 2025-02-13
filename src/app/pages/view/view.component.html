@@ -20,5 +20,5 @@
               [original-size]="true"
               [fit-to-page]="true"
   ></pdf-viewer></div>
-  <div class="flex" *ngIf="noReports">No medical reports found</div>
+  <div class="alert alert-error flex" *ngIf="noReports">{{errorMessage}}</div>
 </div>

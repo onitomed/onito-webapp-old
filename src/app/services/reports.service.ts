@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { UserService } from './user.service';
@@ -9,6 +9,11 @@ const url = `${environment.apiUrl}/api/patientdata`
 
 interface linkObject {
   [key: string]: string  
+}
+
+interface repObject {
+  data: string,
+  resCode: number
 }
 
 @Injectable({
@@ -26,8 +31,8 @@ export class ReportsService {
     })
     return this.httpClient.get(url, { responseType: 'text'});
   }
-  public findByToken(token: string): Observable<string> {
-    return this.httpClient.get(`${environment.apiUrl}/view/${token}`, { responseType: 'text'});
+  public findByToken(token: string): Observable<HttpResponse<object>> {
+    return this.httpClient.get(`${environment.apiUrl}/view/${token}`, { observe: 'response'});
   }
   public getShareLink(): Observable<linkObject> {
     return this.httpClient.get<linkObject>(`${url}/share`, { responseType: 'json'});

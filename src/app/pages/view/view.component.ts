@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { ReportsService } from 'src/app/services/reports.service';
 import { Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class ViewComponent implements OnInit {
   copyMessage = "Copied link to reports"
   noReports = false
   isLoading = false
+  errorMessage = "No medical reports found"
 
   constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router) {
     this.isLoading = true
@@ -25,13 +27,25 @@ export class ViewComponent implements OnInit {
     })
     if (token != null) {
       this.reportsService.findByToken(token)
-        .subscribe((b64String: string)  => {
-          const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
-          
-          const file = new Blob([byteArray], {type: 'application/pdf'});
-          this.pdfSrc = URL.createObjectURL(file);
-          this.link = `${window.location.href}`
-          this.isLoading = false
+        .subscribe((res: HttpResponse<object>)  => {
+          if (res!=null) {
+            let resBody = JSON.parse(JSON.stringify(res)).body
+            console.log(resBody)
+            if (resBody.hasOwnProperty("stack") && resBody["stack"].includes('TokenExpiredError')) {
+              this.noReports = true
+              this.isLoading = false
+              this.errorMessage = "Permission expired. Ask report owner to reshare link."
+            }
+            else {
+              if (resBody.hasOwnProperty("base64Pdf")) {
+                const byteArray = new Uint8Array(atob(resBody["base64Pdf"]).split('').map(char => char.charCodeAt(0)))
+                const file = new Blob([byteArray], {type: 'application/pdf'});
+                this.pdfSrc = URL.createObjectURL(file);
+                this.link = `${window.location.href}`
+                this.isLoading = false
+              }
+            }
+          }
       }, (err) => {
         this.isLoading = false
         this.noReports = true

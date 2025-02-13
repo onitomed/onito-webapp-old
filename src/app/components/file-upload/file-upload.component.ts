@@ -12,6 +12,7 @@ import { FileuploadService } from 'src/app/services/fileupload.service';
 export class FileUploadComponent implements OnInit {
   fileToUpload: File | null = null;
   uploadStatus: string = 'waiting';
+  isLoading = false
   
   constructor(private httpService: HttpClient, private fileUploadService: FileuploadService) { 
   }
@@ -21,20 +22,20 @@ export class FileUploadComponent implements OnInit {
 
   handleFileInput(event: Event) {
     
-    console.log(this.uploadStatus)
     const target = event.target as HTMLInputElement;
     this.fileToUpload = (target.files as FileList)[0];
   }
 
   uploadFile() {
     if (this.fileToUpload) {
-      
+      this.isLoading = true
       this.fileUploadService.uploadFile(this.fileToUpload).subscribe({next: () => {
-       
+        this.isLoading = false
         this.uploadStatus = 'completed'
         
       },
       error: () => {
+        this.isLoading = false
         this.uploadStatus = 'error'
         
       }})

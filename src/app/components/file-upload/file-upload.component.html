@@ -10,4 +10,4 @@
         <li><strong>File Size:</strong> {{fileToUpload?.size}} bytes</li>
       </ul>
     </section>
-<app-button text="Upload" color="dark blue" (btnClick)="uploadFile()"></app-button></div>
+<app-button text="Upload" color="dark blue" (btnClick)="uploadFile()"></app-button><app-spinner *ngIf="isLoading"></app-spinner><div class="alert alert-success" *ngIf="uploadStatus === 'completed'">Upload done</div></div>
