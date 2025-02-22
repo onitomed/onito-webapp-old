@@ -1,6 +1,6 @@
 a {
     padding: 10px;
-    margin: 0 40px;
+    margin: 0 10px;
     font-size: 1.8rem;
 }
 
@@ -12,4 +12,13 @@ a {
 
 a:hover {
     border-bottom: 2px var(--secondary-color) solid;
+}
+
+@media screen and (max-width: 768px) {
+    
+    
+    a:hover {
+        border-bottom: none;
+    }
+     
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 
@@ -10,10 +10,16 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = false
-
+  
   public href: string = "";
 
-  constructor(private router: Router, private tokenStorage: TokenStorageService) { }
+  constructor(private router: Router, private tokenStorage: TokenStorageService) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+            console.log(event);
+      }
+        });
+   }
 
   ngOnInit(): void {
     this.href = this.router.url;

@@ -18,12 +18,18 @@ h2 {
 }
 
 @media screen and (max-width: 768px) {
-     .col-md-12 {
-        margin-top: 160px;
-     }  
-     .flex {
+      
+    .flex {
         flex-direction: column;
         
     }
-     
+    .card {
+    background-color: #f6f6f6;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    color: #333;
+    }
+    
 }
