@@ -16,9 +16,7 @@ h2 {
     justify-content: left;
     align-items: flex-start;
 }
-.form-group input{
-    font-size: 1.5em;
-}
+
 
 @media screen and (max-width: 768px) {
       

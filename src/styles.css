@@ -94,6 +94,10 @@ body {
     font-weight: 600;
     letter-spacing: -2.5%rem;
 }
+.form-group input{
+    font-size: 1.2em;
+    width: auto
+}
 
 ul {
     list-style-type: none;
