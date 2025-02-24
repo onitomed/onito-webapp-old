@@ -16,8 +16,35 @@ const PatientData = require('../models/patientDataModel')
 const getPatientData = asyncHandler(async (req, res) => {
     const patientDataCollection = await PatientData.find({user: req.user.id})
     if (patientDataCollection.length==0) {
-        res.status(400)
-        throw new Error('User not found')
+        const fileBase64 = Buffer.from(fs.readFileSync(path.resolve(__dirname,'../public/startpage.pdf'))).toString('base64')
+        const data = {
+            "branch": "main",
+            "commit_message": `Created PDF for new user ${req.user.id}`,
+            "actions": [{
+                "action": "create",
+                "file_path": `${req.user.id}.pdf`,
+                "content": fileBase64,
+                "encoding": "base64",
+                "author_email": "onitomed@gmail.com",
+                "author_name": "Noorul Ali",
+            },]
+        } 
+        await axios({
+            method: 'post',
+            url: datastoreUrl+'/repository/commits',
+            data: data,
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${datastoreToken}` },}, (err,response) =>  {
+                if (err) {
+                    res.status(500)
+                    throw new Error(err.toString())
+                }
+        })
+        const dlink = `${datastoreUrl}/repository/files/${req.user.id}%2Epdf?ref=main`
+        const patientData = await PatientData.create({
+            user: req.user,
+            link: dlink,
+        })
+        res.status(201).json(patientData)
     }
     else {
         try {
@@ -25,10 +52,15 @@ const getPatientData = asyncHandler(async (req, res) => {
                 method: 'get',
                 url: patientDataCollection[0].link,
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${datastoreToken}` },})
-        
-            res.contentType("application/pdf")
-            res.setHeader( "Content-Disposition", "inline")
-            res.status(200).send(response.data.content)
+            if (response.status == 401) {
+                res.status(401)
+                throw new Error("Unable to access medical data")
+            }
+            else {
+                res.contentType("application/pdf")
+                res.setHeader( "Content-Disposition", "inline")
+                res.status(200).send(response.data.content)
+            }
             
         
         } catch (err) {
