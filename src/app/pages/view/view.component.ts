@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import { ReportsService } from 'src/app/services/reports.service';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
+import { User } from 'src/app/models/User';
 
 
 @Component({
@@ -64,6 +65,19 @@ export class ViewComponent implements OnInit {
   }
   _copied(element: boolean) {
     this.copyMessageDisplay = element
+    {
+      try {
+        const shareData = {
+          title: `Patient medical reports`,
+          text: `Private link to patient's medical reports on ONITO`,
+          url: this.link
+        };
+        navigator.share(shareData);
+        
+      } catch (err) {
+        console.log(`Error: ${err}`)
+      }
+    }
     setTimeout(() => {this.copyMessageDisplay=false}, 5000)
   }
 }
