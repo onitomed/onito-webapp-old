@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ReportsService } from 'src/app/services/reports.service';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/services/user.service';
 
 interface linkObject {
   [key: string]: string  
@@ -22,9 +24,10 @@ export class ReportsComponent implements OnInit {
   host: string = ''
   noReports = false
   isLoading = false
+  user!: User
   
 
-  constructor(private reportsService: ReportsService) {
+  constructor(private reportsService: ReportsService, private userService: UserService) {
     this.host = `${window.location.origin}`
     this.isLoading = true
     this.reportsService.getShareLink()
@@ -32,6 +35,9 @@ export class ReportsComponent implements OnInit {
       this.link = `${this.host}/#/view?token=${linkObj['link']}`
       
     })
+    this.userService.getUser().subscribe((user) => {
+      this.user = user
+    });
     this.reportsService.findById()
     .subscribe((b64String: string): void => {
       const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
@@ -46,8 +52,8 @@ export class ReportsComponent implements OnInit {
     {
       try {
         const shareData = {
-          title: "Patient Link",
-          text: "Link to your medical reports",
+          title: `${this.user.name}'s medical reports`,
+          text: `Private link to ${this.user.name}'s medical reports on ONITO`,
           url: this.link
         };
         navigator.share(shareData);
