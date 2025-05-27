@@ -43,6 +43,19 @@ export class ReportsComponent implements OnInit {
    }
    _copied(element: boolean) {
     this.copyMessageDisplay = element
+    {
+      try {
+        const shareData = {
+          title: "Patient Link",
+          text: "Link to your medical reports",
+          url: this.link
+        };
+        navigator.share(shareData);
+        
+      } catch (err) {
+        console.log(`Error: ${err}`)
+      }
+    }
     setTimeout(() => {this.copyMessageDisplay=false}, 5000)
   }
 
