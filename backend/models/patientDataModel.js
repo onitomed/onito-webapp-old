@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const patientDataSchema = mongoose.Schema({
-    user: {
+    patient: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, 'Please add a user ID'],
-        ref: 'User',
+        required: [true, 'Please add a patient ID'],
+        ref: 'Patient',
     },
     link: {
         type: String,

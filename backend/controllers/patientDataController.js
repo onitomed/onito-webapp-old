@@ -11,18 +11,23 @@ const PatientData = require('../models/patientDataModel')
 
 
 //  @desc    Get patient data
-//  @route   GET /api/patientdata
+//  @route   GET /api/patientdatax
 //  @access  Private
 const getPatientData = asyncHandler(async (req, res) => {
-    const patientDataCollection = await PatientData.find({user: req.user.id})
+    let id
+    if (req.patient && req.patient.id)
+        id = req.patient.id
+    else
+        id=req.user.id
+    const patientDataCollection = await PatientData.find({patient: id})
     if (patientDataCollection.length==0) {
         const fileBase64 = Buffer.from(fs.readFileSync(path.resolve(__dirname,'../public/startpage.pdf'))).toString('base64')
         const data = {
             "branch": "main",
-            "commit_message": `Created PDF for new user ${req.user.id}`,
+            "commit_message": `Created PDF for new patient ${id}`,
             "actions": [{
                 "action": "create",
-                "file_path": `${req.user.id}.pdf`,
+                "file_path": `${id}.pdf`,
                 "content": fileBase64,
                 "encoding": "base64",
                 "author_email": "onitomed@gmail.com",
@@ -39,9 +44,9 @@ const getPatientData = asyncHandler(async (req, res) => {
                     throw new Error(err.toString())
                 }
         })
-        const dlink = `${datastoreUrl}/repository/files/${req.user.id}%2Epdf?ref=main`
+        const dlink = `${datastoreUrl}/repository/files/${id}%2Epdf?ref=main`
         const patientData = await PatientData.create({
-            user: req.user,
+            patient: req.patient,
             link: dlink,
         })
         res.status(201).json(patientData)
@@ -84,7 +89,7 @@ const addPatientData = asyncHandler(async (req, res) => {
         file = req.files.dataFile
         if (!fs.readdirSync(path.resolve(__dirname,'..')).includes('temp'))
             fs.mkdirSync(path.resolve(__dirname,'../temp'))
-        uploadPath = path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`)
+        uploadPath = path.resolve(__dirname,`../temp/${req.patient.id}_new.pdf`)
         file.mv(uploadPath, (err) => {
             if (err) {
                 res.status(500)
@@ -92,13 +97,12 @@ const addPatientData = asyncHandler(async (req, res) => {
             }
         })
     }
-
-    const patientDataCollection = await PatientData.find({user: req.user.id})
+    const patientDataCollection = await PatientData.find({patient: req.patient.id})
     if (patientDataCollection.length == 0) {
         let fileBase64
         if (fileUploaded) {
             const pdf1 = path.resolve(__dirname,'../public/startpage.pdf') 
-            const pdf2 = path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`)
+            const pdf2 = path.resolve(__dirname,`../temp/${req.patient.id}_new.pdf`)
             const pdfsToMerge = [pdf2, pdf1]
             const mergedPdf = await PDFDocument.create() 
             for (const pdfPath of pdfsToMerge) { 
@@ -116,10 +120,10 @@ const addPatientData = asyncHandler(async (req, res) => {
         }
         const data = {
             "branch": "main",
-            "commit_message": `Added PDF for user ${req.user.id}`,
+            "commit_message": `Added PDF for patient ${req.patient.id}`,
             "actions": [{
                 "action": "create",
-                "file_path": `${req.user.id}.pdf`,
+                "file_path": `${req.patient.id}.pdf`,
                 "content": fileBase64,
                 "encoding": "base64",
                 "author_email": "onitomed@gmail.com",
@@ -136,15 +140,15 @@ const addPatientData = asyncHandler(async (req, res) => {
                     throw new Error(err.toString())
                 }
         })
-        const dlink = `${datastoreUrl}/repository/files/${req.user.id}%2Epdf?ref=main`
+        const dlink = `${datastoreUrl}/repository/files/${req.patient.id}%2Epdf?ref=main`
         const patientData = await PatientData.create({
-            user: req.user,
+            patient: req.patient,
             link: dlink,
         })
         res.status(200).json(patientData)
         const directory = path.resolve(__dirname,'../temp')
         for (const file of fs.readdirSync(directory)) {
-            if (file.includes(req.user.id))
+            if (file.includes(req.patient.id))
                 fs.unlinkSync(path.resolve(directory,file))
         }
         
@@ -158,10 +162,10 @@ const addPatientData = asyncHandler(async (req, res) => {
             if (!fs.readdirSync(path.resolve(__dirname,'..')).includes('temp')) {
                 fs.mkdirSync(path.resolve(__dirname,'../temp'))
             }
-            fs.writeFileSync(path.resolve(__dirname,`../temp/${req.user.id}_old.pdf`),response.data.content,'base64')
+            fs.writeFileSync(path.resolve(__dirname,`../temp/${req.patient.id}_old.pdf`),response.data.content,'base64')
             if (fileUploaded) {
-                const pdf1 = path.resolve(__dirname,`../temp/${req.user.id}_old.pdf`) 
-                const pdf2 = path.resolve(__dirname,`../temp/${req.user.id}_new.pdf`)
+                const pdf1 = path.resolve(__dirname,`../temp/${req.patient.id}_old.pdf`) 
+                const pdf2 = path.resolve(__dirname,`../temp/${req.patient.id}_new.pdf`)
                 const pdfsToMerge = [pdf2, pdf1]
                 const mergedPdf = await PDFDocument.create() 
                 for (const pdfPath of pdfsToMerge) { 
@@ -175,10 +179,10 @@ const addPatientData = asyncHandler(async (req, res) => {
                 fileBase64 = await mergedPdf.saveAsBase64()
                 const data = {
                     "branch": "main",
-                    "commit_message": `Updated PDF for user ${req.user.id}`,
+                    "commit_message": `Updated PDF for patient ${req.patient.id}`,
                     "actions": [{
                         "action": "update",
-                        "file_path": `${req.user.id}.pdf`,
+                        "file_path": `${req.patient.id}.pdf`,
                         "content": fileBase64,
                         "encoding": "base64",
                         "author_email": "onitomed@gmail.com",
@@ -202,11 +206,11 @@ const addPatientData = asyncHandler(async (req, res) => {
             throw new Error(err.toString())
         }
         
-        const patientData = await PatientData.findOneAndUpdate({user: req.user.id}, {updatedAt: Date.now}, {new: true})
+        const patientData = await PatientData.findOneAndUpdate({patient: req.patient.id}, {updatedAt: Date.now}, {new: true})
         res.status(200).json(patientData)
         const directory = path.resolve(__dirname,'../temp')
         for (const file of fs.readdirSync(directory)) {
-            if (file.includes(req.user.id))
+            if (file.includes(req.patient.id))
                 fs.unlinkSync(path.resolve(directory,file))
           }
         
@@ -223,7 +227,7 @@ const updatePatientData = asyncHandler(async (req, res) => {
 
     if(!patientData) {
         res.status(400)
-        throw new Error('Goal not found')
+        throw new Error('Patient data object not found')
     }
 
     const updatedPatientData = await PatientData.findByIdAndUpdate(req.params.id, req.body, {
@@ -234,17 +238,17 @@ const updatePatientData = asyncHandler(async (req, res) => {
 })
 
 //  @desc    Delete patient data
-//  @route   DELETE /api/patientdata/:id
+//  @route   DELETE /api/patientdata
 //  @access  Private
 const deletePatientData = asyncHandler(async (req, res) => {
-    const patientDataCollection = await PatientData.find({user: req.user.id})
+    const patientDataCollection = await PatientData.find({patient: req.patient.id})
     if (!patientDataCollection.length == 0) {
         const data = {
             "branch": "main",
-            "commit_message": `Deleted PDF for user ${req.user.id}`,
+            "commit_message": `Deleted PDF for patient ${req.patient.id}`,
             "actions": [{
                 "action": "delete",
-                "file_path": `${req.user.id}.pdf`,
+                "file_path": `${req.patient.id}.pdf`,
                 "author_email": "onitomed@gmail.com",
                 "author_name": "Noorul Ali",
             },]
@@ -259,14 +263,14 @@ const deletePatientData = asyncHandler(async (req, res) => {
                     throw new Error(err.toString())
                 }
         })
-        const patientData = await PatientData.findOneAndDelete({user: req.user.id})
+        const patientData = await PatientData.findOneAndDelete({patient: req.patient.id})
         res.status(200).json(patientData)
     }
     
 
     else {
         res.status(400)
-        throw new Error('User data not found')
+        throw new Error('patient data not found')
     }
 
     
