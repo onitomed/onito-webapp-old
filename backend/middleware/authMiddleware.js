@@ -18,6 +18,7 @@ const protect = asyncHandler(async (req, res, next) => {
             
             if (decoded.pid) {
                 req.patient = await Patient.findById(decoded.pid)
+                
                 if (req.patient == null) {
                     req.patient=undefined
                 }

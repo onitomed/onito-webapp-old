@@ -3,22 +3,35 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const Patient = require('../models/patientModel')
 const User = require('../models/userModel')
+const e = require('express')
 
 //  @desc    Get patient
-//  @route   GET /api/patient
+//  @route   GET /api/patient/:id
 //  @access  Private
 const getPatient = asyncHandler(async (req, res) => {
-    if (!req.patient || !req.patient.id) {
+    const id = req.params.id
+    if (!id) {
         res.status(400)
-        throw new Error("No token with patient ID")
+        throw new Error('No patient ID')
     }
-    const patient = await Patient.findById(req.patient.id)
+    else {
+        
+
+    const patient = await Patient.findById(id)
     if (patient) {
-        res.status(200).json(patient)
+        res.status(200).json({
+            _id: patient._id,
+            name: patient.name,
+            dependent: patient.dependent,
+            root: patient.root,
+            token: generateToken(req.user.id,patient._id),
+            users: patient.users
+        })
     }
     else {
         res.status(400).json('Patient not found')
     }
+}
 })
 
 //  @desc    Add patient
@@ -124,18 +137,45 @@ const getPatientsForUser = asyncHandler(async (req, res) => {
 //  @route   POST /api/patient/user
 //  @access  Private
 const addPatientAccess = asyncHandler(async (req, res) => {
-    const patient = await Patient.findById(req.patient.id)
-
+    
+    const token = Buffer.from(req.body.patientToken, 'base64url').toString()
+    if (!token) {
+        res.status(400)
+        throw new Error('No token')
+    }
+    const patientId=jwt.verify(token, process.env.JWT_SECRET).id
+    const patient = await Patient.findById(patientId)
     if(!patient) {
         res.status(400)
         throw new Error('Patient not found')
     }
-
-    const updatedPatient = await Patient.findByIdAndUpdate(req.patient.id, req.body, {
-        new: true,
-    })
-    res.status(200).json(updatedPatient)
+    if (patient.users.includes(req.user.id)) {
+        res.status(400)
+        throw new Error('Already has access')
+    }
+    else {
+        patient.users.push(req.user.id)
+        const updatedPatient = await Patient.findByIdAndUpdate(patientId, patient, {
+            new: true,
+        })
+        res.status(200).json(updatedPatient)
+    }
 })
+
+//  @desc    Get self patient profile
+//  @route   GET /api/patient
+//  @access  Private
+const getSelf = asyncHandler(async (req, res) => {
+    const patient = await Patient.findById(req.patient.id)
+    if (patient) {
+        res.status(200).json(patient)
+    }
+    else {
+        res.status(400).json('Patient not found')
+    }
+})
+
+
 
 const generateToken = (id,pid) => {
     return jwt.sign({ id,pid }, process.env.JWT_SECRET, {
@@ -151,4 +191,6 @@ module.exports = {
     updatePatient,
     deletePatient,
     getPatientsForUser,
+    addPatientAccess,
+    getSelf
 }
