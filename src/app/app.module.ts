@@ -29,6 +29,7 @@ import { ViewComponent } from './pages/view/view.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SelectpatientComponent } from './components/selectpatient/selectpatient.component';
 
 
 const appRoutes: Routes = [
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
     ReportsComponent,
     ViewComponent,
     SpinnerComponent,
+    SelectpatientComponent,
 
   ],
   imports: [

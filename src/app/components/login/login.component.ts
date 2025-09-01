@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       data => {
         this.isLoading=false
         this.tokenStorage.saveToken(data.token);
+        
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
         this.userService.getUser().subscribe((user) => {
           this.user = user;
+          
         })
         
       },

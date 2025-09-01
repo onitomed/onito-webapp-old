@@ -17,7 +17,12 @@ pdf-viewer {
     flex-direction: row;
     justify-content: baseline;
     padding-bottom: 25px;
+    flex-wrap: wrap;
     
+}
+.vflex {
+    justify-content: baseline;
+      
 }
 
 app-button {

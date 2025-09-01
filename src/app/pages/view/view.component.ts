@@ -31,7 +31,6 @@ export class ViewComponent implements OnInit {
         .subscribe((res: HttpResponse<object>)  => {
           if (res!=null) {
             let resBody = JSON.parse(JSON.stringify(res)).body
-            console.log(resBody)
             if (resBody.hasOwnProperty("stack") && resBody["stack"].includes('TokenExpiredError')) {
               this.noReports = true
               this.isLoading = false

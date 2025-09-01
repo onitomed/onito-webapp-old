@@ -16,6 +16,9 @@ h2 {
     justify-content: left;
     align-items: flex-start;
 }
+.form-control-check {
+    margin: 10px 00px;
+}
 
 @media screen and (max-width: 768px) {
      

@@ -4,6 +4,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { SelectpatientService } from 'src/app/services/selectpatient.service';
+
 
 interface linkObject {
   [key: string]: string  
@@ -25,11 +28,14 @@ export class ReportsComponent implements OnInit {
   noReports = false
   isLoading = false
   user!: User
+  router!: Router;
+  updatePdf: boolean = false
   
 
-  constructor(private reportsService: ReportsService, private userService: UserService) {
+  constructor(private reportsService: ReportsService, private userService: UserService, router: Router, private selectpatientService: SelectpatientService) {
     this.host = `${window.location.origin}`
     this.isLoading = true
+    this.router = router
     this.reportsService.getShareLink()
     .subscribe((linkObj: linkObject): void => {
       this.link = `${this.host}/#/view?token=${linkObj['link']}`
@@ -38,6 +44,7 @@ export class ReportsComponent implements OnInit {
     this.userService.getUser().subscribe((user) => {
       this.user = user
     });
+    
     this.reportsService.findById()
     .subscribe((b64String: string): void => {
       const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
@@ -45,6 +52,7 @@ export class ReportsComponent implements OnInit {
       this.pdfSrc = URL.createObjectURL(file);
       this.isLoading = false
     });
+    
     
    }
    _copied(element: boolean) {
@@ -64,8 +72,17 @@ export class ReportsComponent implements OnInit {
     }
     setTimeout(() => {this.copyMessageDisplay=false}, 5000)
   }
-
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+  }
   ngOnInit(): void {
+    
+    this.selectpatientService.getUpdate().subscribe(msg => {
+      this.reloadCurrentRoute()
+    })
   }
 
 }
