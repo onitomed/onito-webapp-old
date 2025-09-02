@@ -28,6 +28,10 @@ label {
 }
 @media screen and (max-width: 768px) {
     * {
-        margin: 0px 10px 20px 0px;
+        margin: 0px 10px 10px 0px;
+    }
+    label {
+        
+        font-size: 1.4rem;
     }
 }

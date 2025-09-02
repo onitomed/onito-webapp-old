@@ -20,10 +20,6 @@ pdf-viewer {
     flex-wrap: wrap;
     
 }
-.vflex {
-    justify-content: baseline;
-      
-}
 
 app-button {
     margin: 10px;
@@ -31,6 +27,11 @@ app-button {
     
 }
 @media screen and (max-width: 768px) {
-      
-    
+    .flex{
+        flex-direction: column;
+    }
+    .flex > div {
+        margin-bottom: 10px;
+    }
+
 }
