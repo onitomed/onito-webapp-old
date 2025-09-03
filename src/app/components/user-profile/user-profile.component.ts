@@ -17,6 +17,7 @@ SelectpatientComponent
 
 export class UserProfileComponent implements OnInit {
   user!: User; 
+  showAddPatientMenu = false
   
 
 
@@ -26,6 +27,12 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUser().subscribe((user) => {
       this.user = user
     });
+  }
+  addPatientMenu() {
+    if (this.showAddPatientMenu == false)
+      this.showAddPatientMenu = true
+    else
+      this.showAddPatientMenu = false
   }
 
 }
