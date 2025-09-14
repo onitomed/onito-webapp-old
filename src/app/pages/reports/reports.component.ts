@@ -6,6 +6,7 @@ import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { SelectpatientService } from 'src/app/services/selectpatient.service';
+import { Title } from '@angular/platform-browser';
 
 
 interface linkObject {
@@ -32,7 +33,9 @@ export class ReportsComponent implements OnInit {
   updatePdf: boolean = false
   
 
-  constructor(private reportsService: ReportsService, private userService: UserService, router: Router, private selectpatientService: SelectpatientService) {
+  constructor(private reportsService: ReportsService, private userService: UserService, router: Router, private selectpatientService: SelectpatientService, private titleService: Title) {
+    this.titleService.setTitle("ONITO - Medical Reports");
+  
     this.host = `${window.location.origin}`
     this.isLoading = true
     this.router = router

@@ -18,15 +18,23 @@ SelectpatientComponent
 export class UserProfileComponent implements OnInit {
   user!: User; 
   showAddPatientMenu = false
+  form: any = {
+    sharelink: '',
+    name: ''
+  };
+  newpt= false
+  existingPatientForm = true
+  newPatientForm = false
+  errors:[string] = ['']
+  submitted = false
   
-
-
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private patientService: PatientService) { }
 
   ngOnInit(): void {
     this.userService.getUser().subscribe((user) => {
       this.user = user
     });
+    
   }
   addPatientMenu() {
     if (this.showAddPatientMenu == false)
@@ -34,5 +42,48 @@ export class UserProfileComponent implements OnInit {
     else
       this.showAddPatientMenu = false
   }
-
+  onSubmit() {
+    this.errors = ['']
+    this.submitted = true
+    if (!this.newpt) {
+      const token = this.form.sharelink.slice(this.form.sharelink.search('token=')+6,this.form.sharelink.length)
+      
+      this.patientService.addPatientAccess(token).subscribe({
+        next: (res) => {
+        },
+        error: (e) => {
+          this.errors.push(e.error.message)
+        }
+      })
+      
+    }
+  }
+  onSubmitNew() {
+    this.submitted = true
+    if (this.newpt) {
+      const name = this.form.name
+      console.log(name)
+      
+      this.patientService.addNewPatient(name).subscribe({
+        next: (res) => {
+        },
+        error: (e) => {
+          this.errors.push(e.error.message)
+        }
+      })
+      
+    }
+  }
+  onSelectionChange(newpt: Boolean) {
+    if (newpt) {
+      
+      this.newPatientForm = true
+      this.existingPatientForm = false
+    }
+    else {
+      
+      this.existingPatientForm = true
+      this.newPatientForm = false
+    }
+  }
 }

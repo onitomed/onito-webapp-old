@@ -4,6 +4,7 @@ import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from '../../services/auth.service'
 import { TokenStorageService } from '../../services/token-storage.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
   role: string[] = [];
   isLoading = false
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private userService: UserService, private router:Router) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private userService: UserService, private router:Router, private titleService: Title) {
+    this.titleService.setTitle("ONITO - Home");
+  }
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;

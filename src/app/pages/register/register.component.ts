@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
 import { ReportsService } from 'src/app/services/reports.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -18,7 +19,9 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   isLoading = false
   firstUploaded = false
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private reportsService: ReportsService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private reportsService: ReportsService, private titleService: Title) {
+    this.titleService.setTitle("ONITO - Sign Up");
+  }
   ngOnInit(): void {
   }
   onSubmit(): void {

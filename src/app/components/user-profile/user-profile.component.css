@@ -22,12 +22,54 @@ h1 {
     flex-direction: row;
     justify-content: start;
 }
+label {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    text-align: center; 
+    padding: 0px 0px 0px 1px;
+    margin: 0px 0px 0px 5px;
+}
+input[type=checkbox]{
+    -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 0px 0px 0px 10px;
+  margin: 0 10px 0px 10px;
+}
+input[type=url]{
+    margin: 0px 10px 0 15px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+input[type=text]{
+    margin: 0px 10px 0 15px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+.phoneonly {
+    display: none;
+}
+
+
 @media screen and (max-width: 768px) {
     .flex {
         display: flex;
         flex-direction: column;
         align-items: start;
     }
+    .phoneonly {
+        display: block;
+    }
+    .bigscreen {
+        display: none;
+    }
+    
          
   
 }

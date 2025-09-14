@@ -3,6 +3,7 @@ import { ReportsService } from 'src/app/services/reports.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -16,7 +17,9 @@ export class ContainerComponent implements OnInit {
   
 
   constructor(private reportsService: ReportsService,
-    private userService: UserService, private router: Router) { }
+    private userService: UserService, private router: Router, private titleService: Title) {
+      this.titleService.setTitle("ONITO - User Profile");
+    }
 
   ngOnInit(): void {
   }

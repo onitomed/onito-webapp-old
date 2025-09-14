@@ -4,6 +4,7 @@ import { ReportsService } from 'src/app/services/reports.service';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { User } from 'src/app/models/User';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class ViewComponent implements OnInit {
   isLoading = false
   errorMessage = "No medical reports found"
 
-  constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router) {
+  constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router, private titleService: Title) {
+    this.titleService.setTitle("ONITO - View Reports");
     this.isLoading = true
     let token = null
     this.route.queryParams.subscribe(params => {

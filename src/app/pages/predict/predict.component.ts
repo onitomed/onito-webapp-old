@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-predict',
@@ -10,7 +11,9 @@ import { User } from 'src/app/models/User';
 export class PredictComponent implements OnInit {
   user!: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private titleService: Title) {
+    this.titleService.setTitle("ONITO - Predict Disease");
+  }
 
   ngOnInit(): void {
     this.userService.getUser().subscribe((user) => {
