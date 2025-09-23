@@ -15,7 +15,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { HeaderItemComponent } from './components/header-item/header-item.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ButtonComponent } from './components/button/button.component';
-import { PredictComponent } from './pages/predict/predict.component';
 import { AddReportsComponent } from './pages/add-reports/add-reports.component';
 import { ModelsComponent } from './pages/models/models.component';
 import { PredictItemComponent } from './components/predict-item/predict-item.component';
@@ -35,7 +34,6 @@ import { FooterComponent } from './components/footer/footer.component';
 
 const appRoutes: Routes = [
   {path: 'home', component: ContainerComponent},
-  {path: 'predict', component: PredictComponent},
   {path: 'add-reports', component: AddReportsComponent},
   {path: 'models', component: ModelsComponent},
   {path: 'register', component: RegisterComponent},
@@ -51,7 +49,6 @@ const appRoutes: Routes = [
     HeaderItemComponent,
     ContainerComponent,
     ButtonComponent,
-    PredictComponent,
     AddReportsComponent,
     ModelsComponent,
     PredictItemComponent,
