@@ -27,8 +27,9 @@ export class UserProfileComponent implements OnInit {
   newPatientForm = false
   errors:[string] = ['']
   submitted = false
+  added=false
   
-  constructor(private userService: UserService, private patientService: PatientService) { }
+  constructor(private userService: UserService, private patientService: PatientService, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.userService.getUser().subscribe((user) => {
@@ -50,6 +51,10 @@ export class UserProfileComponent implements OnInit {
       
       this.patientService.addPatientAccess(token).subscribe({
         next: (res) => {
+          this.added = true
+          this.tokenStorageService.saveToken(res.token)
+          setTimeout(() => {}, 5000)
+          this.reloadPage()
         },
         error: (e) => {
           this.errors.push(e.error.message)
@@ -62,10 +67,15 @@ export class UserProfileComponent implements OnInit {
     this.submitted = true
     if (this.newpt) {
       const name = this.form.name
-      console.log(name)
+      
       
       this.patientService.addNewPatient(name).subscribe({
         next: (res) => {
+          this.added = true
+          this.tokenStorageService.saveToken(res.token)
+          setTimeout(() => {}, 5000)
+          this.reloadPage()
+          
         },
         error: (e) => {
           this.errors.push(e.error.message)
@@ -85,5 +95,8 @@ export class UserProfileComponent implements OnInit {
       this.existingPatientForm = true
       this.newPatientForm = false
     }
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
 }

@@ -37,12 +37,14 @@
       </app-button>
     
     </div>
+    <h3 class="field" *ngIf="added">Patient Added Successfully</h3>
     <br>
     <div
             class="alert alert-danger"
             role="alert"
             *ngIf="errors && submitted"
           >
+          
             <div *ngIf="errors.includes('Patient not found')">Patient not found with share link</div>
             <div *ngIf="errors.includes('Already has access')">User already has access to patient</div>
             <div *ngIf="errors.includes('No token')">Invalid patient share link</div>
@@ -50,7 +52,7 @@
               Password must be at least 6 characters
             </div> -->
           </div>
-    
+          
     
   </form>
   <form
@@ -76,9 +78,9 @@
   
     <app-button text="Add Patient" type="submit" color="dark blue">
     </app-button>
-  
+    
   </div>
-
+  <h3 class="field" *ngIf="added">Patient Added Successfully</h3>
   
   
 </form>
