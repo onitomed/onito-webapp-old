@@ -1,5 +1,5 @@
-<input type="file" class="file-upload" name="file" id="file" class="myclass" accept=".pdf" (change)="handleFileInput($event)"/>
-<label for="file">Choose a file</label>
+<input type="file" class="file-upload" name="file" id="file" class="myclass" [accept]="format" (change)="handleFileInput($event)"/>
+<label for="file">{{labeltext}}</label>
 <div *ngIf="fileToUpload">
     <!-- Display file details -->
     <section class="file-details">

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   isLoading = false
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private userService: UserService, private router:Router, private titleService: Title) {
-    this.titleService.setTitle("ONITO - Home");
+    this.titleService.setTitle("Home - ONITO");
   }
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {

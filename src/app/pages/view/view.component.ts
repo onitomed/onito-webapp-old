@@ -22,7 +22,7 @@ export class ViewComponent implements OnInit {
   errorMessage = "No medical reports found"
 
   constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router, private titleService: Title) {
-    this.titleService.setTitle("ONITO - View Reports");
+    this.titleService.setTitle("View Reports - ONITO");
     this.isLoading = true
     let token = null
     this.route.queryParams.subscribe(params => {

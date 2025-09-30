@@ -9,10 +9,11 @@ import { Title } from '@angular/platform-browser';
 export class ModelsComponent implements OnInit {
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle("ONITO - Tools");
+    this.titleService.setTitle("Tools - ONITO");
   }
 
   ngOnInit(): void {
+    
   }
 
 }

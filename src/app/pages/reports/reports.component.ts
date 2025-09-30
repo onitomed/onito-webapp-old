@@ -34,7 +34,7 @@ export class ReportsComponent implements OnInit {
   
 
   constructor(private reportsService: ReportsService, private userService: UserService, router: Router, private selectpatientService: SelectpatientService, private titleService: Title) {
-    this.titleService.setTitle("ONITO - Medical Reports");
+    this.titleService.setTitle("Medical Reports - ONITO");
   
     this.host = `${window.location.origin}`
     this.isLoading = true

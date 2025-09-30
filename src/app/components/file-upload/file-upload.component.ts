@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FileuploadService } from 'src/app/services/fileupload.service';
 
 
@@ -10,9 +10,13 @@ import { FileuploadService } from 'src/app/services/fileupload.service';
 })
 
 export class FileUploadComponent implements OnInit {
+  @Input() format!: string;
+  @Input() labeltext = 'Choose File';
+  @Input() dummy: boolean = false;
   fileToUpload: File | null = null;
   uploadStatus: string = 'waiting';
   isLoading = false
+  
   
   constructor(private httpService: HttpClient, private fileUploadService: FileuploadService) { 
   }
@@ -27,7 +31,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   uploadFile() {
-    if (this.fileToUpload) {
+    if (this.fileToUpload && !this.dummy) {
       this.isLoading = true
       this.fileUploadService.uploadFile(this.fileToUpload).subscribe({next: () => {
         this.isLoading = false

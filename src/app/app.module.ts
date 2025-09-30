@@ -17,7 +17,6 @@ import { ContainerComponent } from './components/container/container.component';
 import { ButtonComponent } from './components/button/button.component';
 import { AddReportsComponent } from './pages/add-reports/add-reports.component';
 import { ModelsComponent } from './pages/models/models.component';
-import { PredictItemComponent } from './components/predict-item/predict-item.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -30,6 +29,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectpatientComponent } from './components/selectpatient/selectpatient.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AitpComponent } from './pages/aitp/aitp.component';
 
 
 const appRoutes: Routes = [
@@ -40,6 +40,7 @@ const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'reports', component: ReportsComponent},
   {path: 'view', component: ViewComponent},
+  {path: 'aitp', component: AitpComponent}
 ]
 
 @NgModule({
@@ -51,7 +52,6 @@ const appRoutes: Routes = [
     ButtonComponent,
     AddReportsComponent,
     ModelsComponent,
-    PredictItemComponent,
     FileUploadComponent,
     RegisterComponent,
     UserProfileComponent,
@@ -61,6 +61,7 @@ const appRoutes: Routes = [
     SpinnerComponent,
     SelectpatientComponent,
     FooterComponent,
+    AitpComponent,
 
   ],
   imports: [

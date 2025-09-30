@@ -1,0 +1,14 @@
+<div class="container">
+    <h2 class="title">
+        AUTOIMMUNE DISEASE TREATMENT PLANNER (AITP)
+    </h2>
+    <p class="info">AITP is not approved by FDA, EMA and CDSCO yet</p>
+    <p *ngIf="!isLoggedIn" class="error-red-info">Synovium scRNAseq data not found. You are not logged in.</p>
+    <div *ngIf="isLoggedIn" class="rflex">
+        <app-selectpatient></app-selectpatient>
+        <p class="error-red-info">Synovium scRNAseq data not found</p>
+    </div>
+    <app-file-upload format=".bam,.sam,.fastq" labeltext="Upload scRNAseq" [dummy]="true"></app-file-upload>
+    <p class="info">AITP uses synovium single-cell RNA sequencing data from patients with rheumatoid arthritis (RA). AITP analyzes uploaded data to rank immune cell type abundance and determine cell-type abundance phenotype. AITP finally recommends drugs based on cell-type abundance phenotype to specifically target immune cells with maximum dysregulation. AITP chooses from the RA armamentarium of 14 FDA-approved drugs.</p>
+    
+</div>
