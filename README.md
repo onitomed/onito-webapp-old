@@ -1,8 +1,8 @@
 # ONITO web application frontend
 
-Core dependencies are Angular 13.3.3 and Node 12.2. Other dependencies listed in ```package.json```.
+Core dependencies are Angular 20.3.9 and Node 22.13. Other dependencies listed in ```package.json```.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
 
 ## Development server
 
@@ -14,7 +14,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/browser/` directory.
 
 ## Running unit tests
 
