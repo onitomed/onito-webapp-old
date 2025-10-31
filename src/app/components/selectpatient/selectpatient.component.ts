@@ -10,9 +10,10 @@ import { SelectpatientService } from 'src/app/services/selectpatient.service';
 
 
 @Component({
-  selector: 'app-selectpatient',
-  templateUrl: './selectpatient.component.html',
-  styleUrls: ['./selectpatient.component.css']
+    selector: 'app-selectpatient',
+    templateUrl: './selectpatient.component.html',
+    styleUrls: ['./selectpatient.component.css'],
+    standalone: false
 })
 export class SelectpatientComponent implements OnInit {
 

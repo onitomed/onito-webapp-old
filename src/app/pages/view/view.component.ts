@@ -8,9 +8,10 @@ import { Title } from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.css']
+    selector: 'app-view',
+    templateUrl: './view.component.html',
+    styleUrls: ['./view.component.css'],
+    standalone: false
 })
 export class ViewComponent implements OnInit {
   pdfSrc: string = ""

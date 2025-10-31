@@ -4,9 +4,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ReportsService } from 'src/app/services/reports.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css'],
+    standalone: false
 })
 export class RegisterComponent implements OnInit {
   form: any = {

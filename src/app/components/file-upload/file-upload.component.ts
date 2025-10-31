@@ -1,12 +1,13 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { FileuploadService } from 'src/app/services/fileupload.service';
 
 
 @Component({
-  selector: 'app-file-upload',
-  templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.css']
+    selector: 'app-file-upload',
+    templateUrl: './file-upload.component.html',
+    styleUrls: ['./file-upload.component.css'],
+    standalone: false
 })
 
 export class FileUploadComponent implements OnInit {

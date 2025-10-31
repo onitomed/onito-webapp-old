@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 
@@ -30,6 +30,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectpatientComponent } from './components/selectpatient/selectpatient.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AitpComponent } from './pages/aitp/aitp.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 const appRoutes: Routes = [
@@ -43,31 +44,24 @@ const appRoutes: Routes = [
   {path: 'aitp', component: AitpComponent}
 ]
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    HeaderItemComponent,
-    ContainerComponent,
-    ButtonComponent,
-    AddReportsComponent,
-    ModelsComponent,
-    FileUploadComponent,
-    RegisterComponent,
-    UserProfileComponent,
-    LoginComponent,
-    ReportsComponent,
-    ViewComponent,
-    SpinnerComponent,
-    SelectpatientComponent,
-    FooterComponent,
-    AitpComponent,
-
-  ],
-  imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), HttpClientModule, FormsModule, PdfViewerModule, ClipboardModule, NoopAnimationsModule
-  ],
-  providers: [authInterceptorProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent,
+        HeaderItemComponent,
+        ContainerComponent,
+        ButtonComponent,
+        AddReportsComponent,
+        ModelsComponent,
+        FileUploadComponent,
+        RegisterComponent,
+        UserProfileComponent,
+        LoginComponent,
+        ReportsComponent,
+        ViewComponent,
+        SpinnerComponent,
+        SelectpatientComponent,
+        FooterComponent,
+        AitpComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, PdfViewerModule, ClipboardModule, NoopAnimationsModule, NgxChartsModule], providers: [authInterceptorProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
