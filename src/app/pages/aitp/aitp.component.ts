@@ -119,7 +119,7 @@ export class AitpComponent implements OnInit {
   gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'CELL TYPE ABUNDANCE';
+  xAxisLabel: string = 'SYNOVIUM CELL TYPE PROPORTION';
   showYAxisLabel: boolean = false;
   yAxisLabel: string = '';
   public legendPosition: LegendPosition = LegendPosition.Below

@@ -2,8 +2,9 @@
     <h2 class="title">
         AUTOIMMUNE DISEASE TREATMENT PLANNER (AITP)
     </h2>
-    <p class="info">AITP is not approved by FDA, EMA and CDSCO</p>
-    <p *ngIf="!isLoggedIn" class="error-red-info">Demo for illustration purposes<br>Choose healthy or rheumatoid arthritis patient</p>
+    <p class="error-red-info">Demo for illustration purposes</p>
+    <p class="info">AITP is not approved by FDA, EMA or CDSCO</p>
+    <p class="error-red-info">Choose healthy or rheumatoid arthritis patient</p>
     <!-- <div *ngIf="isLoggedIn" class="rflex">
         <app-selectpatient></app-selectpatient>
         <p class="error-red-info">Synovium scRNAseq data not found</p>
@@ -37,6 +38,6 @@
     <h3 class="value">Recommended drug: <div class='error-red-info'>{{ pdata.rec }}</div></h3>
 
 
-    <p class="info">AITP uses synovium single-cell RNA sequencing data from patients with rheumatoid arthritis (RA). AITP analyzes uploaded data to rank immune cell type abundance and determine cell-type abundance phenotype. AITP finally recommends drugs based on cell-type abundance phenotype to specifically target immune cells with maximum dysregulation. AITP chooses from the RA armamentarium of 14 FDA-approved drugs.</p>
+    <p class="info">AITP analyzes synovium single-cell RNA sequencing data from patients with rheumatoid arthritis to determine numbers of different immune cell types and cell-type abundance phenotype (CTAP). AITP recommends drugs based on CTAP to specifically target immune dysregulation. AITP chooses from 14 drugs approved by US FDA for rheumatoid arthritis.</p>
     
 </div>
