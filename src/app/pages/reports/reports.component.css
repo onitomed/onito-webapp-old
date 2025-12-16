@@ -23,8 +23,7 @@ pdf-viewer {
 
 app-button {
     margin: 10px;
-    padding: 10px;
-    
+    padding: 10px; 
 }
 @media screen and (max-width: 768px) {
     .flex{
@@ -32,6 +31,10 @@ app-button {
     }
     .flex > div {
         margin-bottom: 10px;
+    }
+    app-button {
+        margin: 5px;
+        padding: 5px; 
     }
 
 }
