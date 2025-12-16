@@ -1,6 +1,4 @@
 header {
-    
-    
     align-items: center;
     margin: 20px 20px 20px 40px;
 }
@@ -10,71 +8,13 @@ header {
     color: #7ED958;
 }
 .mobileOn {
-    display: none;
+    display: none
     
  }
  .mobileOff {
     display: flex;
-    justify-content: space-around;
-    
-    
-    
+    justify-content: space-around; 
  }
- #sidebarMenu {
-    height: 150px; /*change here related your menu height*/
-    position: fixed;
-    overflow: none;
-    width: 100%;
-    z-index: 100;
-    transform: translateY(-300px); /*change here related your menu height*/
-}
-.main-content-wrapper app-header-item{
-    width: 20%;
-    height: 0px;
-    display: block;
-    
-    
-    text-align: center;
-    padding-top: 40px;
-    
-    text-decoration: none;
-}
-#sidebarMenu::-webkit-scrollbar {
-    width: 12px;
-}
-#sidebarMenu::-webkit-scrollbar-track {
-     
-    border-radius: 10px; 
-}
-#sidebarMenu::-webkit-scrollbar-thumb {
-    
-     
-    border-radius: 10px;
-    
-    height: 0px;
-}
-
-input[type="checkbox"]:checked ~ #sidebarMenu {
-    transform: translatey(30px);
-    top:20px /*change here related your top menu height*/
-}
-input[type=checkbox] {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    display: none;
-}
-.sidebarIconToggle {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    cursor: pointer;
-    position: absolute;
-    z-index: 99;
-    height: 22px;
-    width: 22px;
-    right: 30%;
-    top:33px;
-    display: none
-}
 .spinner {
     transition: all 0.3s;
     box-sizing: border-box;
@@ -82,44 +22,6 @@ input[type=checkbox] {
     height: 3px;
     width: 100%;
     background-color: black;
-}
-.horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-}
-.diagonal.part-1 {
-    position: relative;
-    transition: all 0.3s;
-    box-sizing: border-box;
-    float: left;
-}
-.diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    opacity: 0;
-}
-
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(135deg);
-    margin-top: 8px;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(-135deg);
-    margin-top: -9px;
 }
 
 
@@ -132,10 +34,11 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
  }
 
  .mobileOn {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    
+    display:grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    justify-items: center;
+    column-gap: 25px;
  }
  .mobileOff {
     display: none;

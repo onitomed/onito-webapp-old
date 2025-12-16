@@ -28,7 +28,7 @@ app-button {
 }
 @media screen and (max-width: 768px) {
     .flex{
-        flex-direction: column;
+        flex-direction: row;
     }
     .flex > div {
         margin-bottom: 10px;
