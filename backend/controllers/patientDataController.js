@@ -11,7 +11,7 @@ const PatientData = require('../models/patientDataModel')
 
 
 //  @desc    Get patient data
-//  @route   GET /api/patientdatax
+//  @route   GET /api/patientdata
 //  @access  Private
 const getPatientData = asyncHandler(async (req, res) => {
     let id
@@ -21,7 +21,6 @@ const getPatientData = asyncHandler(async (req, res) => {
     }   
     else
         id=req.user.id
-    
     const patientDataCollection = await PatientData.find({patient: id})
     if (patientDataCollection.length==0) {
         const fileBase64 = Buffer.from(fs.readFileSync(path.resolve(__dirname,'../public/startpage.pdf'))).toString('base64')
