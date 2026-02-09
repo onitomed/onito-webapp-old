@@ -33,4 +33,7 @@ h2 {
     margin: 0px;
     color: #333;
     }
+    h2 {
+        font-size: 1.8rem;
+    }
 }

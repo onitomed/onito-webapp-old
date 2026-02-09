@@ -1,19 +1,17 @@
 .myclass + label {
-    
-
     display: inline-block;
-    padding: 10px 30px;
+    padding: 10px 12px;
     cursor: pointer;
     background-color: var(--primary-color);
     color: #fff;
     border: 5px solid var(--primary-color);
     border-radius: 111px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.9px;
+    font-size: 1.4rem;
 }
 
-
+* {
+    margin: 10px 0;
+}
 .myclass:focus + label,
 .myclass + label:hover {
     background-color: transparent;
@@ -28,4 +26,7 @@
 	overflow: hidden;
 	position: absolute;
 	z-index: -1;
+}
+.file-details h3,li{
+    padding: 10px 0;
 }
