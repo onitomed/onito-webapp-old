@@ -32,7 +32,7 @@ header {
  .mobileOn {
     display:flex;
     
-    justify-content: space-between;
+    justify-content: space-around;
     
  }
  .mobileOff {
@@ -53,3 +53,30 @@ header {
     align-items:end;
 }
 }
+
+@media screen and (max-width: 537px) {
+
+    .mobileOn {
+       display:flex;
+       
+       justify-content: space-evenly;
+       
+    }
+    .mobileOff {
+       display: none;
+    }
+    header {
+       margin: 20px 20px 20px 20px;
+       
+   }
+   .justify-start {
+       display: flex;
+       flex-direction: column;
+       align-items: start;
+   }
+   .justify-end {
+       display: flex;
+       flex-direction: column;
+       align-items:end;
+   }
+   }
