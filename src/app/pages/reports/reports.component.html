@@ -15,7 +15,8 @@
 </div></div>
 <div>
   <div *ngIf="isLoading">
-    <app-spinner></app-spinner>
+    <app-spinner class="loader"></app-spinner>
+    <p class="loading-text">{{loadingText}}</p>
   </div>
 <div *ngIf="!noReports">
   <pdf-viewer [src]="pdfSrc"
