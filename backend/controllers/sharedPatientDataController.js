@@ -36,7 +36,7 @@ const getSharedPatientData = asyncHandler(async (req, res) => {
     }
 })
 
-const generateToken = (id, duration='10d') => {
+const generateToken = (id, duration='30d') => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: duration,
     })
