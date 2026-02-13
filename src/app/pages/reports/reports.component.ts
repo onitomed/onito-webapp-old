@@ -27,7 +27,7 @@ export class ReportsComponent implements OnInit {
   copyMessage = "Copied link to reports"
   host: string = ''
   noReports = false
-  isLoading = true
+  isLoading = false
   user!: User
   router!: Router;
   updatePdf: boolean = false
@@ -54,7 +54,7 @@ export class ReportsComponent implements OnInit {
       const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
       const file = new Blob([byteArray], {type: 'application/pdf'});
       this.pdfSrc = URL.createObjectURL(file);
-      //this.isLoading = false
+      this.isLoading = false
     });
     
     
