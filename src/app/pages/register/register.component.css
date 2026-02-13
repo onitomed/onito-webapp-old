@@ -19,6 +19,12 @@ h2 {
 .form-control-check {
     margin: 10px 00px;
 }
+.loader {
+    display: flex;
+    justify-content: center;
+    margin: -75px 0 0 0;
+    
+}
 
 @media screen and (max-width: 768px) {
      

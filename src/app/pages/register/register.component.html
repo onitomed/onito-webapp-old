@@ -88,7 +88,7 @@
           <app-button text="Login" color="dark blue" routerLink="/">
           </app-button>
         </div>
-        <div *ngIf="isLoading">
+        <div *ngIf="isLoading" class="loader">
           <app-spinner></app-spinner>
         </div>
         <div class="alert alert-warning" *ngIf="myForm.submitted && isSignUpFailed">

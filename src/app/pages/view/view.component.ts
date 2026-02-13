@@ -21,6 +21,7 @@ export class ViewComponent implements OnInit {
   noReports = false
   isLoading = false
   errorMessage = "No medical reports found"
+  loadingText: string = 'loading  reports'
 
   constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router, private titleService: Title) {
     this.titleService.setTitle("View Reports - ONITO");

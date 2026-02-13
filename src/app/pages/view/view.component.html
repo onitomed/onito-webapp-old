@@ -12,8 +12,9 @@
     {{copyMessage}}
   </div></div>
   <div>
-    <div *ngIf="isLoading">
-      <app-spinner></app-spinner>
+    <div *ngIf="isLoading" class="loader">
+      <app-spinner ></app-spinner>
+      <p class="loading-text">{{loadingText}}</p>
     </div>
     
     <div *ngIf="!noReports">
