@@ -23,8 +23,8 @@ export class PatientService {
     
     return this.httpClient.get<Patient>(`${apiUrl}/${id}`, {responseType:'json'})
   }
-  public addPatientAccess(token: string): Observable<any> {
-    return this.httpClient.post(`${apiUrl}/user`, { patientToken: token },{ responseType: 'json'});
+  public addPatientAccess(token: string): Observable<Patient> {
+    return this.httpClient.post<Patient>(`${apiUrl}/user`, { patientToken: token },{ responseType: 'json'});
   }
   public addNewPatient(name: string): Observable<Patient> {
     return this.httpClient.post<Patient>(`${apiUrl}`, { name: name, dependent: true },{ responseType: 'json'});

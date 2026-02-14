@@ -38,13 +38,12 @@
     
     </div>
     <h3 class="field" *ngIf="added">Patient Added Successfully</h3>
-    <br>
     <div
             class="alert alert-danger"
             role="alert"
             *ngIf="errors && submitted"
           >
-          
+            <br>
             <div *ngIf="errors.includes('Patient not found')">Patient not found with share link</div>
             <div *ngIf="errors.includes('Already has access')">User already has access to patient</div>
             <div *ngIf="errors.includes('No token')">Invalid patient share link</div>
@@ -87,7 +86,7 @@
 
 
 
-
+<br>
 <h3 class="field">User ID: <div class="value">{{ user._id }}</div></h3>
 <h3 class="field">User Name: <div class="value">{{ user.name }}</div></h3>
 <h3 class="field">User Role: <div class="value">{{ user.roles[user.roles.length-1] | titlecase }}</div></h3>
