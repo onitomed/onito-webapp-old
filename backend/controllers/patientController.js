@@ -159,7 +159,15 @@ const addPatientAccess = asyncHandler(async (req, res) => {
         const updatedPatient = await Patient.findByIdAndUpdate(patientId, patient, {
             new: true,
         })
-        res.status(201).json(updatedPatient)
+        
+        res.status(201).json({
+            _id: updatedPatient._id,
+            name: updatedPatient.name,
+            root: updatedPatient.root,
+            token: generateToken(req.user.id,updatedPatient._id),
+            users: updatedPatient.users,
+            dependent: updatedPatient.dependent
+        })
     }
 })
 
