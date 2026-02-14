@@ -88,7 +88,7 @@ const loginUser = asyncHandler(async (req, res) => {
     
     // Password check
     if(user && (await brcypt.compare(password, user.password))) {
-        const patient = await Patient.findOne({users:user.id, root: true})
+        const patient = await Patient.findOne({users:user.id, root: true, "users.0":user.id})
         if (patient) {
             res.status(200).json({
                 _id: user.id,
