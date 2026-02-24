@@ -1,7 +1,7 @@
 <div>
     <div class="card">
-      <div *ngIf="!isLoggedIn">
-      <h2>Login</h2>
+      
+      <h2 *ngIf="!isLoggedIn">Login</h2>
       <form
         *ngIf="!isLoggedIn"
         name="form"
@@ -9,7 +9,7 @@
         #f="ngForm"
         novalidate
       >
-        <div class="form-group">
+        <div class="form-group" *ngIf="!isLoggedIn">
           <label for="email"></label>
           <input
           placeholder="Email"
@@ -23,12 +23,12 @@
           <div
             class="alert alert-danger"
             role="alert"
-            *ngIf="email.errors && f.submitted"
+            *ngIf="!isLoggedIn && email.errors && f.submitted"
           >
             Email is required!
-            <div *ngIf="email.errors['email']">Valid email is required</div></div>
+            <div *ngIf="!isLoggedIn && email.errors['email']">Valid email is required</div></div>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!isLoggedIn">
           <label for="password"></label>
           <input
           placeholder="Password"
@@ -43,7 +43,7 @@
           <div
             class="alert alert-danger"
             role="alert"
-            *ngIf="password.errors && f.submitted"
+            *ngIf="!isLoggedIn && password.errors && f.submitted"
           >
             <div *ngIf="password.errors['required']">Password is required</div>
             <div *ngIf="password.errors['minlength']">
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group flex">
+        <div class="form-group flex" *ngIf="!isLoggedIn">
           <app-button text="Login" type="submit" color="dark blue">
           </app-button>
           
@@ -71,7 +71,6 @@
           </div>
         </div>
       </form>
-    </div>
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Welcome to ONITO
       </div>
