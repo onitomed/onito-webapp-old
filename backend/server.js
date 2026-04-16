@@ -25,6 +25,7 @@ app.use(fileupload())
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/patientdata', require('./routes/patientDataRoutes'))
 app.use('/api/patient', require('./routes/patientRoutes'))
+app.use('/api/meds', require('./routes/medsRoutes'))
 app.use('/view', require('./routes/viewPatientDataRoutes'))
 app.use('/docs', swaggerUi.serve);
 app.get('/docs', swaggerUi.setup(swaggerDocument));

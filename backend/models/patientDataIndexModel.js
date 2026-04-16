@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 // schema for each page range in reports
-// [startIndex, endIndex] pages are classified under report types [classifiers]
-const indexSchema = mongoose.Schema({
-    startIndex: Number,
-    endIndex: Number
-})
+// docSchema classifies each document (fileName)
+// pages between [startIndex, endIndex) are labeled with strings [classifiers]
+
 const docSchema = mongoose.Schema({
-    index: [indexSchema],
+    fileName: String,
+    startIndex: Number,
+    endIndex: Number,
     classifiers: [String]
 })
 const patientDataIndexSchema = mongoose.Schema({
