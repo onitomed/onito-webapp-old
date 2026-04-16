@@ -1,0 +1,133 @@
+.dropdown-wrapper {
+    position: relative;
+    display: inline-flex;
+  }
+  
+  .add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 12px;
+    background-color: var(--primary-color);
+    color: #fff;
+    
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+    border: 5px solid var(--primary-color);
+    border-radius: 111px;
+    font-size: 1.3rem;
+  }
+  
+  .add-btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 5px solid var(--primary-color);
+  }
+  
+  .add-btn .chev {
+    transition: transform 0.18s ease;
+  }
+  
+  .add-btn.open .chev {
+    transform: rotate(180deg);
+  }
+  
+  .menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 300px;
+    background: #f6f6f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 5px;
+    z-index: 1000;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    
+  }
+  .menu-header {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px 5px;
+    
+    margin-bottom: 4px;
+  }
+   
+
+   
+  .close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #f6f6f6;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--primary-color);
+  }
+   
+  .close-btn:hover {
+    background: #e5e7eb;
+  }
+  
+  .mitem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+
+  .mitem:hover {
+    background: #f5f5f5;
+  }
+ 
+  .ibox {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 9px;
+  }
+  
+  .ibox svg {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .ttl {
+    font-size: 1.1rem;
+    
+    color: #333;
+    line-height: 1.3;
+  }
+  @media (max-width: 550px) {
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 12px;
+      font-size: 1.2rem; 
+    }
+    .menu {
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      border-radius: 18px 18px 0 0;
+      padding: 12px 8px 24px;
+    }
+    .menu-header {
+      display: flex;
+    }
+  }
+

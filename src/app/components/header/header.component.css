@@ -1,6 +1,6 @@
 header {
     align-items: center;
-    margin: 20px 20px 20px 40px;
+    margin: 20px 20px 8px 40px;
     justify-content: space-around;
 }
 
@@ -39,7 +39,7 @@ header {
     display: none;
  }
  header {
-    margin: 20px 20px 20px 20px;
+    margin: 20px 20px 10px 20px;
     
 }
 .justify-start {
@@ -66,7 +66,7 @@ header {
        display: none;
     }
     header {
-       margin: 20px 20px 20px 20px;
+       margin: 20px 20px 15px 20px;
        
    }
    .justify-start {

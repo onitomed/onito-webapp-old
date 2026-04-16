@@ -1,0 +1,65 @@
+<div class="dropdown-wrapper">
+
+    <button class="add-btn" [class.open]="isOpen" (click)="toggle()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+      </svg>
+      Add new
+      <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
+  
+    <div class="menu" *ngIf="isOpen">
+
+      <div class="menu-header">
+        <span></span>
+        <button class="close-btn" (click)="toggle()">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+  
+      <div class="mitem" *ngFor="let item of menuItems" [routerLink]="[item.link]">
+        
+        <div class="ibox" [style.background]="item.color">
+          <ng-container [ngSwitch]="item.icon">
+          
+            <svg *ngSwitchCase="'report'" viewBox="0 0 24 24" fill="none" [attr.stroke]="item.stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2"/>
+              <line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/>
+            </svg>
+  
+            <svg *ngSwitchCase="'medication'" viewBox="0 0 24 24" fill="none" [attr.stroke]="item.stroke" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.5 3.5a5 5 0 0 1 7.07 7.07l-7.07 7.07a5 5 0 1 1-7.07-7.07Z"/>
+            <line x1="7" y1="7" x2="14" y2="14"/>
+            
+            </svg>
+  
+            <svg *ngSwitchCase="'notes'" viewBox="0 0 24 24" fill="none" [attr.stroke]="item.stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+            <circle cx="21" cy="3" r="0"/> 
+            </svg>
+  
+            <svg *ngSwitchCase="'patient'" viewBox="0 0 24 24" fill="none" [attr.stroke]="item.stroke" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+  
+          </ng-container>
+        
+        </div>
+        
+          
+        <div class="txt">
+          
+          <div class="ttl">{{ item.label }}</div>
+        
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

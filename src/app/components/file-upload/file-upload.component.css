@@ -7,6 +7,7 @@
     border: 5px solid var(--primary-color);
     border-radius: 111px;
     font-size: 1.4rem;
+    margin-left: -5px;
 }
 
 * {
