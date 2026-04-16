@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { SelectpatientService } from 'src/app/services/selectpatient.service';
 import { Title } from '@angular/platform-browser';
+import { DropdownmenuComponent } from 'src/app/components/dropdownmenu/dropdownmenu.component';
 
 
 interface linkObject {
@@ -17,7 +18,9 @@ interface linkObject {
     selector: 'app-reports',
     templateUrl: './reports.component.html',
     styleUrls: ['./reports.component.css'],
-    standalone: false
+    standalone: false,
+    
+
 })
 
 export class ReportsComponent implements OnInit {

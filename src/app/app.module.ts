@@ -6,10 +6,6 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 
-
-
-
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderItemComponent } from './components/header-item/header-item.component';
@@ -31,6 +27,11 @@ import { SelectpatientComponent } from './components/selectpatient/selectpatient
 import { FooterComponent } from './components/footer/footer.component';
 import { AitpComponent } from './pages/aitp/aitp.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DropdownmenuComponent } from './components/dropdownmenu/dropdownmenu.component';
+import { AddMedsComponent } from './pages/add-meds/add-meds.component';
+import { PatientInfoComponent } from './pages/patient-info/patient-info.component';
+import { NotesComponent } from './pages/notes/notes.component';
+
 
 
 const appRoutes: Routes = [
@@ -41,7 +42,10 @@ const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'reports', component: ReportsComponent},
   {path: 'view', component: ViewComponent},
-  {path: 'aitp', component: AitpComponent}
+  {path: 'aitp', component: AitpComponent},
+  {path: 'notes', component: NotesComponent},
+  {path: 'meds', component: AddMedsComponent},
+  {path: 'patient-info', component: PatientInfoComponent},
 ]
 
 @NgModule({ declarations: [
@@ -62,6 +66,8 @@ const appRoutes: Routes = [
         SelectpatientComponent,
         FooterComponent,
         AitpComponent,
+        DropdownmenuComponent
+        
     ],
     bootstrap: [AppComponent], imports: [BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, PdfViewerModule, ClipboardModule, NoopAnimationsModule, NgxChartsModule], providers: [authInterceptorProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

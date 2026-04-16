@@ -4,11 +4,11 @@
   
   <div class="flex">
       <div><app-selectpatient></app-selectpatient></div>
-      <div><a routerLink='/add-reports'><app-button text="Add Reports" color="dark blue"></app-button></a></div>
       
+      <div><app-dropdown-menu></app-dropdown-menu></div>
       
       <div><app-button text="Share" color="dark blue" [cdkCopyToClipboard]="link" (cdkCopyToClipboardCopied)="_copied($event)" ></app-button></div>
-    </div>
+  </div>
 
 <div class="flex" *ngIf="copyMessageDisplay">
   {{copyMessage}}
@@ -27,5 +27,7 @@
         
 ></pdf-viewer></div>
 </div>
+
+
     
 

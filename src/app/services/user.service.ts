@@ -23,9 +23,6 @@ export class UserService {
     this.tokenStorageService.signOut(); 
   }
 
-  // TO ADD
-  getUsernameByToken() {
-
-  }
+  
   
 }

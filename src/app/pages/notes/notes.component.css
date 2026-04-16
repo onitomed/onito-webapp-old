@@ -1,0 +1,22 @@
+div {
+    margin: 0px 40px;
+}
+
+h1 {
+    margin: 30px 0 10px 0;
+    color: var(--primary-color);
+}
+p {
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width: 768px) {
+    
+    h1 {
+        margin: 20px 0;
+        
+    }
+    div {
+        margin: 0px 10px;
+    }
+}

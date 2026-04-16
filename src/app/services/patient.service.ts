@@ -13,7 +13,7 @@ const apiUrl = `${environment.apiUrl}/api/patient`
 })
 export class PatientService {
 
-  constructor(private httpClient: HttpClient, private userService: UserService) { }
+  constructor(private httpClient: HttpClient) { }
 
   public getAllPatients(): Observable<[PatientSm]> {
     return this.httpClient.get<[PatientSm]>(`${apiUrl}/user`, { responseType: 'json'});
