@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-notes',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './notes.component.css',
 })
 export class NotesComponent {
-
+  constructor(private titleService: Title) {
+    this.titleService.setTitle("Your Notes - ONITO");
+  }
 }
