@@ -7,7 +7,7 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 11px 12px;
+    padding: 11px 11px;
     background-color: var(--primary-color);
     color: #fff;
     
@@ -113,7 +113,7 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 9px 12px;
+      padding: 9px 9px;
       font-size: 1.2rem; 
     }
     .menu {
