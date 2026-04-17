@@ -7,7 +7,7 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 10px 12px;
+    padding: 11px 12px;
     background-color: var(--primary-color);
     color: #fff;
     
@@ -16,7 +16,7 @@
     white-space: nowrap;
     border: 5px solid var(--primary-color);
     border-radius: 111px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   
   .add-btn:hover {
