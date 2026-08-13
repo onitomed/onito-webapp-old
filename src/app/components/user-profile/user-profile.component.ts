@@ -9,6 +9,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { SelectpatientComponent } from '../selectpatient/selectpatient.component';
 import { AddbtnComponent } from '../addbtn/addbtn.component';
 
+
 @Component({
     selector: 'app-user-profile',
     templateUrl: './user-profile.component.html',
