@@ -33,7 +33,7 @@ export class SelectpatientComponent implements OnInit {
     this.userService.getUser().subscribe((user) => {
       this.user = user
       
-      this.getPatients().subscribe((obj:[PatientSm]) => {
+      this.patientService.getAllPatients().subscribe((obj:[PatientSm]) => {
         this.patients=obj
         
         if (this.patients.length!=null) {
@@ -47,9 +47,7 @@ export class SelectpatientComponent implements OnInit {
       })
     });
   }
-  getPatients(): Observable<[PatientSm]>{
-    return this.patientService.getAllPatients()
-  }
+  
   getPatientFromName(patientName: string) {
     this.patients.forEach(patient => {
       if (patient.name == patientName)

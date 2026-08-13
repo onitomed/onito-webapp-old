@@ -3,7 +3,8 @@
 </h1>
 
 <div class='flex'><app-selectpatient></app-selectpatient>
-<app-button text="Add Patient to Profile" color="dark blue" (btnClick)="addPatientMenu()"></app-button>
+<!-- <app-button text="Add Patient to Profile" color="dark blue" (btnClick)="addPatientMenu()"></app-button> -->
+<app-addbtn text="Add Patient" (btnClick)="addPatientMenu()"></app-addbtn>
 
 </div>
 <div *ngIf="showAddPatientMenu">
