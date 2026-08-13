@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Patient } from 'src/app/models/Patient';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { SelectpatientComponent } from '../selectpatient/selectpatient.component';
-SelectpatientComponent
+import { AddbtnComponent } from '../addbtn/addbtn.component';
 
 @Component({
     selector: 'app-user-profile',
