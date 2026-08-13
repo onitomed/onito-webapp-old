@@ -7,7 +7,7 @@
       
       <div><app-dropdown-menu></app-dropdown-menu></div>
       
-      <div><app-button text="Share" color="dark blue" [cdkCopyToClipboard]="link" (cdkCopyToClipboardCopied)="_copied($event)" ></app-button></div>
+      <div><app-button text="Share" color="dark blue" [cdkCopyToClipboard]="link" (cdkCopyToClipboardCopied)="_copied($event)" iconFlag="true"></app-button></div>
   </div>
 
 <div class="flex" *ngIf="copyMessageDisplay">
@@ -25,7 +25,8 @@
         [original-size]="true"
         [fit-to-page]="true"
         
-></pdf-viewer></div>
+></pdf-viewer>
+</div>
 </div>
 
 

@@ -18,6 +18,7 @@ pdf-viewer {
     flex-direction: row;
     justify-content: baseline;
     padding-bottom: 25px;
+    gap: 60px;
     
 }
 
@@ -44,6 +45,13 @@ app-button {
     font-weight: bolder;
     letter-spacing: 3px;
 }
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 508px) { 
+    .flex {
+        flex-direction: row;
+        justify-content: baseline;
+        padding-bottom: 25px;
+        gap: 20px;
+        
+    }
     
 }
