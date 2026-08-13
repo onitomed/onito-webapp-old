@@ -31,6 +31,8 @@ import { DropdownmenuComponent } from './components/dropdownmenu/dropdownmenu.co
 import { AddMedsComponent } from './pages/add-meds/add-meds.component';
 import { PatientInfoComponent } from './pages/patient-info/patient-info.component';
 import { NotesComponent } from './pages/notes/notes.component';
+import { AddbtnComponent } from './components/addbtn/addbtn.component';
+import { NgxWeekdayPickerModule } from '@xirenec/ngx-weekday-picker';
 
 
 
@@ -66,8 +68,12 @@ const appRoutes: Routes = [
         SelectpatientComponent,
         FooterComponent,
         AitpComponent,
-        DropdownmenuComponent
+        DropdownmenuComponent,
+        AddbtnComponent,
+        AddMedsComponent
         
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, PdfViewerModule, ClipboardModule, NoopAnimationsModule, NgxChartsModule], providers: [authInterceptorProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
+    bootstrap: [AppComponent], 
+    imports: [BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, PdfViewerModule, ClipboardModule, NoopAnimationsModule, NgxChartsModule,NgxWeekdayPickerModule],
+    providers: [authInterceptorProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
