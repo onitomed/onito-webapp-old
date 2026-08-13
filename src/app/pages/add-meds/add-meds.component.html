@@ -1,11 +1,75 @@
 <div class="container">
-    <h1 class="title">Medicines</h1>
-    <p>Daily reminders<br>Track medicine intake<br>Schedule tests</p>
-    <!-- @for (item of meds.medicines; track item._id) {
-        <li>{{ item._id }}</li>
+    <div class="hflex"><h1 class="title">{{patientSm}}'s Medicines</h1>
+        <!-- <p>Track medicine intake</p> -->
+        <app-addbtn text="Add" (btnClick)="addMedMenu()"></app-addbtn>
+    </div>
+    <div *ngIf="showAddMed">
+        
+        <form
+        *ngIf="showAddMed"
+        name="form"
+        (ngSubmit)="myForm.form.valid && onSubmit()"
+        #myForm="ngForm"
+        novalidate
+      >
+        <div class="form-group">
+            <label for="medicineName">Medicine Name</label>
+            <input
+            placeholder="Required"
+              type="text"
+              class="form-control"
+              name="medicineName"
+              [(ngModel)]="form.medicineName"
+              required
+              #medicineName="ngModel"
+            />
+          </div>
+          <div>
+            <label for="appointment">Time:</label>
+
+                <input
+                type="time"
+                id="appointment"
+                name="appointment"
+                min="00:00"
+                max="23:59"
+                [(ngModel)]="form.medicineTime"
+                #medicineTime="ngModel"
+                required />
+        </div>
+          <div>Frequency: {{frequency}}</div>
+          <ngx-weekday-picker
+            [daysNames]="options.daysNames"
+            [weekStart]="options.weekStart"
+            [selected]="options.selected"
+            [inactiveColor]="options.inactiveColor"
+            [inactiveBgColor]="options.inactiveBgColor"
+            [inactiveBorderColor]="options.inactiveBorderColor"
+            [dayWidth]="options.dayWidth"
+            [fontSize]="options.fontSize"
+            [activeColor]="options.activeColor"
+            [activeBgColor]="options.activeBgColor"
+            [activeBorderColor]="options.activeBorderColor"
+            (selectedChanged)="hello($event)"
+        ></ngx-weekday-picker>
+        
+            <app-button text="Add Medicine" type="submit" color="dark blue"></app-button>
+            <div class="alert alert-warning" *ngIf="myForm.submitted && isAddFailed">
+                Add medicine failed!<br />{{ errorMessage }}
+              </div>
+          </form>
+    </div>
+    @for (item of meds.medicines; track item._id) {
+        <div class="med-item">
+            <div>{{ item.name | titlecase }}</div>
+            <span>{{ item.time  }}</span>
+            <p>{{ this.medTimeStrings[item._id]   }}</p>
+            <p>{{ this.medTimeStrings[item._id] }}</p>
+        </div>
         } @empty {
         <li>There are no items.</li>
         }
-    <p>{{meds._id}}</p> -->
+    <!-- <p>{{meds._id}}</p> -->
+     <p>{{timezone}}</p>
     <br><h2 style="color: var(--secondary-color);">Coming soon</h2>
 </div>

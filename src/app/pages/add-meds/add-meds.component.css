@@ -11,6 +11,21 @@ h1 {
 p {
     font-size: 1.2rem;
 }
+.med-item {
+    margin: 0;
+    
+}
+.hflex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+    padding: 10px 0;
+}
+.hflex > h1{
+    margin: 0px 0;
+}
 @media screen and (max-width: 1150px) {
     div {
         margin: 0px 40px;
