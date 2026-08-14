@@ -14,7 +14,7 @@ const getPatientMeds = asyncHandler(async (req, res) => {
     if(patientMeds)
         res.status(200).json(patientMeds)
     else {
-        res.status(400)
+        res.status(404)
         throw new Error('Patient medicines not found')
     }
 })
@@ -23,7 +23,7 @@ const getPatientMeds = asyncHandler(async (req, res) => {
 //  @route   POST /api/patientmeds
 //  @access  Private
 const addPatientMeds = asyncHandler(async (req, res) => {
-    const { name, type, time, days, genericName } = req.body
+    const { name, type, time, days, genericName, duration, timezoneOffset } = req.body
 
     // Form validation
     if(!name || !time) {
@@ -39,17 +39,31 @@ const addPatientMeds = asyncHandler(async (req, res) => {
                 type,
                 time,
                 days,
-                genericName}
-            ]
+                duration,
+                genericName
+            }],
+            timezoneOffset
         })
         res.status(201).json(newMeds)
     }
     else {
-        const newMeds = await PatientMeds.findOneAndUpdate(
-            {patientId: req.patient.id},
-            { "$push": { "medicines": {name,time,type,days,genericName} } },
-            { "new": true })
-        res.status(201).json(newMeds)
+        if (timezoneOffset && patientMeds.timezoneOffset != timezoneOffset) {
+            const newMeds = await PatientMeds.findOneAndUpdate(
+                {patientId: req.patient.id},
+                {   timezoneOffset: timezoneOffset,
+                    "$push": { "medicines": {name,time,type,days,genericName,duration} } 
+                },
+                { "new": true })
+            res.status(201).json(newMeds)
+        }
+        else {
+            const newMeds = await PatientMeds.findOneAndUpdate(
+                {patientId: req.patient.id},
+                { "$push": { "medicines": {name,time,type,days,genericName,duration} } },
+                { "new": true })
+            res.status(201).json(newMeds)
+        }
+        
     } 
 })
 
@@ -57,7 +71,7 @@ const addPatientMeds = asyncHandler(async (req, res) => {
 //  @route   PUT /api/patientmeds
 //  @access  Private
 const updatePatientMeds = asyncHandler(async (req, res) => {
-    const { medId, name, type, time, days, genericName } = req.body
+    const { medId, name, type, time, days, genericName, duration } = req.body
 
     // Form validation
     if(!medId) {
@@ -79,6 +93,8 @@ const updatePatientMeds = asyncHandler(async (req, res) => {
                     med.days=days
                 if (genericName!=null && genericName!=med.genericName)
                     med.genericName=genericName
+                if (duration!=null && duration!=med.duration)
+                    med.duration=duration
                 patientMeds.medicines.pull(medId)
                 patientMeds.medicines.push(med)
                 const newMeds = await PatientMeds.findOneAndUpdate(
@@ -88,13 +104,13 @@ const updatePatientMeds = asyncHandler(async (req, res) => {
                 res.status(201).json(newMeds)
             }
             else {
-                res.status(400)
+                res.status(404)
                 throw new Error(`${medId} medicine not found`)
             }
                 
         }
         else {
-            res.status(400)
+            res.status(404)
             throw new Error('No medicines found')
         }
     }
@@ -107,7 +123,7 @@ const deletePatientMeds = asyncHandler(async (req, res) => {
     const { deleteAll, medId } = req.body
     if (!deleteAll && !medId) {
         res.status(400)
-        throw new Error('No medicines to delete')
+        throw new Error('No medicines given to delete')
     }
     else {
         const p = await PatientMeds.findOne({patientId:req.patient.id})
@@ -127,8 +143,35 @@ const deletePatientMeds = asyncHandler(async (req, res) => {
             }
         }
         else {
-            res.status(400)
+            res.status(404)
             throw new Error('Patient medicines not found')
+        }
+    }
+})
+
+//  @desc    Update timezone offset
+//  @route   PUT /api/patientmeds/timezone
+//  @access  Private
+const updatePatientMedsTimezoneOffset = asyncHandler(async (req, res) => {
+    const { timezoneOffset } = req.body
+
+    // Form validation
+    if(!timezoneOffset) {
+        res.status(400)
+        throw new Error("Please specify new timezone offset")
+    }
+    else {
+        let patientMeds = await PatientMeds.findOne({patientId:req.patient.id})
+        if(patientMeds) {
+            const newMeds = await PatientMeds.findOneAndUpdate(
+                {patientId: req.patient.id},
+                {timezoneOffset: timezoneOffset},
+                { returnDocument: 'after' })
+            res.status(201).json(newMeds)    
+        }
+        else {
+            res.status(404)
+            throw new Error('No medicines found')
         }
     }
 })
@@ -137,5 +180,6 @@ module.exports = {
     getPatientMeds,
     addPatientMeds,
     updatePatientMeds,
-    deletePatientMeds
+    deletePatientMeds,
+    updatePatientMedsTimezoneOffset
 }
