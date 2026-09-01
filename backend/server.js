@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const swaggerUi = require('swagger-ui-express')
+const { execFile } = require('child_process')
 
 const dotenv = require('dotenv').config({ path: path.join(__dirname, 'config', 'config.env') })
 const {errorHandler} = require('./middleware/errorMiddleware')
@@ -18,7 +19,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(cors())
+app.use(cors({ exposedHeaders: ['ETag', 'Last-Modified'] }))
 app.use(fileupload())
 
 
@@ -33,4 +34,14 @@ app.get('/docs', swaggerUi.setup(swaggerDocument));
 
 app.use(errorHandler)
 
-app.listen(port, () => console.log(`Server started on port ${port}`))
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`)
+    
+    execFile('qpdf', ['--version'], (err, stdout) => {
+        if (err) {
+            console.error('qpdf not found on PATH -- PDF merges will fail:', err.message)
+        } else {
+            console.log('qpdf available:', stdout.split('\n')[0])
+        }
+    })
+})
