@@ -4,9 +4,6 @@ pdf-viewer {
 
 .container {
     display: flex;
-    
-
-    
     /* width: 750px;
     margin-right: 343px;
     margin-top: 50px;
@@ -19,14 +16,13 @@ pdf-viewer {
     justify-content: baseline;
     padding-bottom: 25px;
     gap: 60px;
-    
 }
 
 app-button {
     margin: 10px;
     padding: 10px;
-    
 }
+
 .loader {
     display: flex;
     flex-direction: column;
