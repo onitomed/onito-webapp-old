@@ -2,10 +2,6 @@
   color: var(--primary-color);
   margin: 10px 0;
 }
-* {
-  margin: 5px 0px;
-  padding: 5px 0px;
-}
 .rflex {
   display: flex;
   flex-direction: row;
@@ -19,20 +15,24 @@
 }
 .error-red-info {
   color: red;
-  font-size: 1.2rem;
-    
+  
 }
 .info {
     color: black;
-    font-size: 1.2rem;  
+    font-size: 1rem; 
+    margin-top: 10px; 
 }
 .container {
     padding: 0 40px;    
 }
-
+a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  
+}
 select{
   color: var(--primary-color);
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
   
   border-radius: 10px;

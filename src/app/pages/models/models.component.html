@@ -1,22 +1,31 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
-<h1 class="title">Tools on ONITO</h1>
+<h1 class="title">Precision Medicine Tools</h1>
     <div class="model"><div class="mtitle">
         <h2 class="model-title">
             AITP
         </h2>
-        <a routerLink='/aitp'><app-button text="Open Tool" color="dark blue"></app-button></a></div>
+        <a routerLink='/aitp'><app-button text="Open" color="dark blue"></app-button></a></div>
             <div class="model-info">
-            <p>Autoimmune Treatment Planner</p><br>
-            <p>Refs: [1. <a href='https://github.com/Immunogenomics/RA_Atlas_CITEseq/'>RA Atlas CITEseq repository</a>,     2. <a href='https://immunogenomics.io/ampra2/'>Immunogenomics Cell-Gene Cluster</a>]</p><br>
-            <p>
-            Precision medicine tool for rheumatoid arthritis (RA) to recommend best drug treatment.<br><br>RA is a heterogenous autoimmune disease. Drugs work on some patients and fail on others. RA patients have different types of dysregulated immune cells, known as disease heterogeneity. Medicines for RA target specific causes of inflammation (Tumor Necrosis Factor-alpha, Interleukin 6, B cells) caused by specific dysregulated immune cells. Dysregulated immune cell type is not easily determined from traditional diagnosis, but synovium biopsy scRNAseq data of a patient processed with AITP machine learning model determines dysregulated immune cell types and numbers (abundance). AITP uses these immune cell types and numbers with known biologic drug mechanisms in a transparent and explainable rule-based approach to determine best drug treatment. Based on research by <a href='https://www.broadinstitute.org/bios/soumya-raychaudhuri'>Soumya Raychaudhuri</a> at Broad Institute of MIT and Harvard, Boston, United States. 
-            </p>
+            <p>Autoimmune Treatment Planner for rheumatoid arthritis</p><br>
+            <p>Refs: [1. <a href='https://github.com/Immunogenomics/RA_Atlas_CITEseq/'>RA Atlas CITEseq repository</a>,     2. <a href='https://immunogenomics.io/ampra2/'>Immunogenomics Cell-Gene Cluster</a>]</p>
+            
+            </div>
+    </div>
+    <div class="model"><div class="mtitle">
+        <h2 class="model-title">
+            OnCo
+        </h2>
+        <a href="https://onco.cc/"><app-button text="Open" color="dark blue"></app-button></a></div>
+            <div class="model-info">
+            <p>Cancer information website lists cancers by type, approved treatments, new biotechnologies, clinical trials and more</p><br>
+            <p>Refs: [1. <a href='https://github.com/judegomila/OnCo'>OnCo repository</a>,     2. <a href='https://judegomila.com/'>Jude Gomila</a>]</p>
+            
             </div>
     </div>
     <div class="model">
         <h2 class="model-title">
-            ECHONEXT
+            EchoNext
         </h2>
         
         <div class="model-info">
@@ -31,15 +40,15 @@
     </div>
     <div class="model">
         <h2 class="model-title">
-            HUMANGEO
+            HumanGEO
         </h2>
 
         <div class="model-info">
 
             <p>Metabolic digital twin</p><br>
-            <p>Refs: [1. <a href='https://matrixdex.github.io/researchdex/subtypesoftype2diabetesfromgeneticknockoutsinhumangemgenomescalemodelshow5signaturemetabolicstates.html'>Type 2 Diabetes Application Note</a>]</p><br>
+            <p>Refs: [1. <a href='https://github.com/matrixdex/diabetessubtype/tree/main'>HumanGEMlib repository</a>, 2. <a href='https://matrixdex.github.io/researchdex/subtypesoftype2diabetesfromgeneticknockoutsinhumangemgenomescalemodelshow5signaturemetabolicstates.html'>Application Note</a>]</p><br>
             <p>
-                Digital software models liver, stomach, gastric, and intestinal health; collectively called metabolic health. HumanGEO ingests kidney function test (KFT), liver function test (LFT), complete blood count (CBC), Hb1Ac level, insulin level, and urine routine reports as input. HumanGEO uses input as training data to model metabolism over time. Logic is to correct for real patient data leading to constraints for HumanGEO to run recorded metabolic states. When HumanGEO runs and reaches parameters equivalent to reported patient data, the underlying metabolic state in HumanGEO captures insight of active cellular mechanisms in metabolic dysregulation, liver fat deposition, pancreatic failure and digestive hormone dysregulation. Made by CTO Noorul Ali.
+                Digital software models liver, stomach, gastric, and intestinal health; collectively called metabolic health. Input data are kidney function test (KFT), liver function test (LFT), complete blood count (CBC), Hb1Ac level, insulin level, and urine routine reports. Trained to model metabolism over time on real patient data, HumanGEO latent representation holds mechanistic insight into metabolic dysregulation, liver fat deposition, pancreatic failure and digestive hormone dysregulation. Powered by HumanGEMlib Python library. Made by CTO Noorul Ali.
             </p>
 
         </div>
@@ -49,7 +58,7 @@
     
     <div class="model">
         <h2 class="model-title">
-            PPBAG
+            PPBag
         </h2>
 
         <div class="model-info">
@@ -82,7 +91,7 @@
     </div>
     <div class="model">
         <h2 class="model-title">
-            PRECISION AMR
+            Precision AMR
         </h2>
 
         <div class="model-info">
@@ -97,7 +106,7 @@
     </div>
     <div class="model">
         <h2 class="model-title">
-            PATIENT SIMILARITY SEARCH
+            Patient Similarity Search
         </h2>
         <div class="model-info">
            <p>Horizontal vector search on longitudinal health records. Search similar patients, treatments, eligible clinical trials, and outcomes.</p> 

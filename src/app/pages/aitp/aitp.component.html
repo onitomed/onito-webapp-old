@@ -2,16 +2,15 @@
     <h2 class="title">
         AUTOIMMUNE DISEASE TREATMENT PLANNER (AITP)
     </h2>
-    <p class="error-red-info">Demo for illustration purposes</p>
-    <p class="info">AITP is not approved by FDA, EMA or CDSCO</p>
-    <p class="error-red-info">Choose healthy or rheumatoid arthritis patient</p>
+    <p class="error-red-info">Demo for illustration purposes only</p>
+   
     <!-- <div *ngIf="isLoggedIn" class="rflex">
         <app-selectpatient></app-selectpatient>
         <p class="error-red-info">Synovium scRNAseq data not found</p>
     </div> -->
     <!-- <app-file-upload format=".h5ad" labeltext="Upload scRNAseq count matrix" [dummy]="true"></app-file-upload> -->
 
-    <label class='value' for="p">Patient examples</label>
+    <label class='value' for="p">Choose patient:</label>
     <select class='form-control' name="p" id="p" [(ngModel)]="patientSm" (ngModelChange)="onChange($event)">
         <option value="" disabled>Select Patient</option>
         <option *ngFor="let patient of patients" [ngValue]="patient">{{patient}}</option>
@@ -39,5 +38,9 @@
 
 
     <p class="info">AITP analyzes synovium single-cell RNA sequencing data from patients with rheumatoid arthritis to determine numbers of different immune cell types and cell-type abundance phenotype (CTAP). AITP recommends drugs based on CTAP to specifically target immune dysregulation. AITP chooses from 14 drugs approved by US FDA for rheumatoid arthritis.</p>
+
+    <p class="info">
+        RA is a heterogenous autoimmune disease. Drugs work on some patients and fail on others. RA patients have different types of dysregulated immune cells, known as disease heterogeneity. Medicines for RA target specific causes of inflammation (Tumor Necrosis Factor-alpha, Interleukin 6, B cells) caused by specific dysregulated immune cells. Dysregulated immune cell type is not easily determined from traditional diagnosis, but synovium biopsy scRNAseq data of a patient processed with AITP machine learning model determines dysregulated immune cell types and numbers (abundance). AITP uses these immune cell types and numbers with known biologic drug mechanisms in a transparent and explainable rule-based approach to determine best drug treatment. Based on research by <a href='https://www.broadinstitute.org/bios/soumya-raychaudhuri'>Soumya Raychaudhuri</a> at Broad Institute of MIT and Harvard, Boston, United States. 
+        </p>
     
 </div>
