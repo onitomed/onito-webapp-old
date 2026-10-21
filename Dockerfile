@@ -6,8 +6,12 @@ FROM node:20-bookworm-slim
 # qpdf is invoked directly by backend/controllers/patientDataController.js and
 # checked for on startup in backend/server.js, so it must exist as a real
 # system binary on PATH (not an npm package).
+# RUN apt-get update \
+#     && apt-get install -y --no-install-recommends qpdf \
+#     && rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends qpdf \
+    && apt-get install -y --no-install-recommends qpdf curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # ---- App setup ----
@@ -31,4 +35,7 @@ ENV PORT=5000
 EXPOSE 5000
 
 # Matches "scripts.start": "node backend/server.js" in package.json
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+
+# 2. replace the final CMD
+CMD ["sh", "-c", "echo '--- curl check ---'; curl -sS -i --max-time 15 \"https://dv-g3b-emudhra.we-have-a-problem.com/" || echo 'curl failed (exit '$?')'; echo '--- end curl check ---'; exec npm start"]
