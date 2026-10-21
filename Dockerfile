@@ -1,18 +1,25 @@
 # ---- Base image ----
 # Debian-based slim image so apt-get / qpdf are available.
-FROM node:20-bookworm-slim
+FROM node:22.23.4-bookworm-slim
 
 # ---- System dependencies ----
 # qpdf is invoked directly by backend/controllers/patientDataController.js and
 # checked for on startup in backend/server.js, so it must exist as a real
 # system binary on PATH (not an npm package).
-# RUN apt-get update \
-#     && apt-get install -y --no-install-recommends qpdf \
-#     && rm -rf /var/lib/apt/lists/*
-
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends qpdf curl ca-certificates \
+    && apt-get install -y --no-install-recommends qpdf ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+# ---- Distrust eMudhra / emSign ----
+# Oct 2026: private keys for eight eMudhra intermediate CA certificates were
+# compromised, letting anyone mint certificates chaining to eMudhra roots.
+# Deselect every emSign/eMudhra root from the system store, rebuild it, and
+# fail the build if any survive. (Node needs --use-openssl-ca below to
+# actually honour this store; by default it uses its own bundled roots.)
+COPY scripts/assert-no-emudhra.js /opt/assert-no-emudhra.js
+RUN sed -i -E 's#^(mozilla/(emSign|eMudhra))#!\1#I' /etc/ca-certificates.conf \
+    && update-ca-certificates --fresh \
+    && node /opt/assert-no-emudhra.js
 
 # ---- App setup ----
 WORKDIR /app
@@ -34,8 +41,10 @@ COPY . .
 ENV PORT=5000
 EXPOSE 5000
 
-# Matches "scripts.start": "node backend/server.js" in package.json
-# CMD ["npm", "start"]
+# Make Node trust the (pruned) system CA store instead of its compiled-in
+# Mozilla bundle, which still contains the eMudhra roots. Covers axios,
+# the MongoDB driver and anything else using Node's TLS.
+ENV NODE_OPTIONS=--use-openssl-ca
 
-# 2. replace the final CMD
-CMD ["sh", "-c", "echo '--- curl check ---'; curl -sS -v --max-time 15 https://dv-g3b-emudhra.we-have-a-problem.com/ 2>&1 | head -80; echo '--- end curl check ---'; exec npm start"]
+# Matches "scripts.start": "node backend/server.js" in package.json
+CMD ["npm", "start"]
