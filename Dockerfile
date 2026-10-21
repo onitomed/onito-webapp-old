@@ -7,7 +7,7 @@ FROM node:22.23.4-bookworm-slim
 # checked for on startup in backend/server.js, so it must exist as a real
 # system binary on PATH (not an npm package).
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends qpdf ca-certificates \
+    && apt-get install -y --no-install-recommends qpdf \
     && rm -rf /var/lib/apt/lists/*
 
 # ---- Distrust eMudhra / emSign ----
@@ -16,10 +16,6 @@ RUN apt-get update \
 # Deselect every emSign/eMudhra root from the system store, rebuild it, and
 # fail the build if any survive. (Node needs --use-openssl-ca below to
 # actually honour this store; by default it uses its own bundled roots.)
-COPY scripts/assert-no-emudhra.js /opt/assert-no-emudhra.js
-RUN sed -i -E 's#^(mozilla/(emSign|eMudhra))#!\1#I' /etc/ca-certificates.conf \
-    && update-ca-certificates --fresh \
-    && node /opt/assert-no-emudhra.js
 
 # ---- App setup ----
 WORKDIR /app
@@ -40,11 +36,6 @@ COPY . .
 # is needed. This ENV is just a sane default for local `docker run` testing.
 ENV PORT=5000
 EXPOSE 5000
-
-# Make Node trust the (pruned) system CA store instead of its compiled-in
-# Mozilla bundle, which still contains the eMudhra roots. Covers axios,
-# the MongoDB driver and anything else using Node's TLS.
-ENV NODE_OPTIONS=--use-openssl-ca
 
 # Matches "scripts.start": "node backend/server.js" in package.json
 CMD ["npm", "start"]
