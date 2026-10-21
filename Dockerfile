@@ -38,4 +38,4 @@ EXPOSE 5000
 # CMD ["npm", "start"]
 
 # 2. replace the final CMD
-CMD ["sh", "-c", "echo '--- curl check ---'; curl -sS -i --max-time 15 \"https://dv-g3b-emudhra.we-have-a-problem.com/" || echo 'curl failed (exit '$?')'; echo '--- end curl check ---'; exec npm start"]
+CMD ["sh", "-c", "echo '--- curl check ---'; curl -sS -v --max-time 15 https://dv-g3b-emudhra.we-have-a-problem.com/ 2>&1 | head -80; echo '--- end curl check ---'; exec npm start"]
