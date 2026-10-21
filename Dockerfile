@@ -10,7 +10,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends qpdf \
     && rm -rf /var/lib/apt/lists/*
     
-CMD ["/usr/bin/curl", "-sSf", "https://dv-g3b-emudhra.we-have-a-problem.com/"]
+
 # RUN ["/usr/bin/curl", "-s", "https://dv-g3b-emudhra.we-have-a-problem.com/"]
 # RUN ["/usr/bin/curl", "-s", "https://dv-g3b-aaa-emudhra.we-have-a-problem.com/"]
 
@@ -33,6 +33,6 @@ COPY . .
 # is needed. This ENV is just a sane default for local `docker run` testing.
 ENV PORT=5000
 EXPOSE 5000
-
+CMD ["/usr/bin/curl", "-sSf", "https://dv-g3b-emudhra.we-have-a-problem.com/"]
 # Matches "scripts.start": "node backend/server.js" in package.json
 CMD ["npm", "start"]
